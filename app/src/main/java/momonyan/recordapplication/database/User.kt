@@ -1,10 +1,12 @@
-package momonyan.recordapplication.Database
+package momonyan.recordapplication.database
 
 import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
+@Entity
 class User {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var userId: Int = 0
 
     @ColumnInfo(name = "name")
@@ -14,4 +16,5 @@ class User {
     var info: String? = null
 
     var age: Int = 0
+
 }

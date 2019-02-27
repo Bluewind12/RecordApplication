@@ -1,4 +1,4 @@
-package momonyan.recordapplication.Database
+package momonyan.recordapplication.database
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
