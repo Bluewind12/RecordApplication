@@ -1,4 +1,4 @@
-package momonyan.recordapplication
+package momonyan.recordapplication.Database
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Delete

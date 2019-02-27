@@ -1,4 +1,4 @@
-package momonyan.recordapplication
+package momonyan.recordapplication.Database
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.PrimaryKey

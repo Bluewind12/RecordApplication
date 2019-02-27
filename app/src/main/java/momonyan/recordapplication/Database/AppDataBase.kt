@@ -1,10 +1,10 @@
-package momonyan.recordapplication
+package momonyan.recordapplication.Database
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 
 @Database(entities = arrayOf(User::class), version = 1) // Kotlin 1.2からは arrayOf(User::class)の代わりに[User::class]と書ける
-abstract class AppDatabase : RoomDatabase() {
+abstract class AppDataBase : RoomDatabase() {
 
     // DAOを取得する。
     abstract fun userDao(): UserDao
