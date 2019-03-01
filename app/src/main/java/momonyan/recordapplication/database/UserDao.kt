@@ -1,5 +1,6 @@
 package momonyan.recordapplication.database
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
@@ -11,7 +12,7 @@ interface UserDao {
 
     // シンプルなSELECTクエリ
     @Query("SELECT * FROM user")
-    fun getAll(): List<User>
+    fun getAll(): LiveData<List<User>>
 
     // メソッドの引数をSQLのパラメーターにマッピングするには :引数名 と書く
     @Query("SELECT * FROM user WHERE userId IN (:userIds)")

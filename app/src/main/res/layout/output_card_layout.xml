@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        android:id="@+id/outputCardView">
+                                        android:id="@+id/outputCardView"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:cardUseCompatPadding="true"
+                                        app:cardCornerRadius="10dp"
+    >
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:orientation="vertical">
+                      android:orientation="vertical" android:paddingLeft="5sp">
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/dateTextView" android:layout_weight="1"
-                    tools:text="日時が表示される場所"/>
+                    tools:text="日時が表示される場所" android:padding="4sp"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/titleTextView" android:layout_weight="1"
-                    tools:text="題名が表示される場所" android:textSize="24sp"/>
+                    tools:text="題名が表示される場所" android:textSize="24sp" android:padding="4sp"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/contentTextView" android:layout_weight="1"
-                    tools:text="内容"/>
+                    tools:text="内容" android:padding="4dp"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

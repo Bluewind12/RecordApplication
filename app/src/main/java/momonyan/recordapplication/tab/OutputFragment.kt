@@ -1,5 +1,6 @@
 package momonyan.recordapplication.tab
 
+import android.arch.lifecycle.Observer
 import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,10 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.facebook.stetho.Stetho
-import io.reactivex.Completable
-import io.reactivex.Single
-import io.reactivex.rxkotlin.toObservable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.tab_tab1_output_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.database.AppDataBase
@@ -43,51 +40,50 @@ class OutputFragment : Fragment() {
         )
 
         //
-        val database =
-            Room.databaseBuilder(activity!!.applicationContext, AppDataBase::class.java, "kotlin_room_sample.db")
+        val dataBase =
+            Room.databaseBuilder(activity!!.applicationContext, AppDataBase::class.java, "TestDataBase.db")
                 .build()
 
-//        userList = database.userDao().getAll()
-        Single.fromCallable { database.userDao().getAll() }
-            .subscribeOn(Schedulers.io())
-            .flatMapObservable { it.toObservable() }
-            .map {
-                mDataList.add(OutputDataClass(it.userId.toString(), it.name!!, it.info!!))
 
-                Log.d("Tag", "${it.userId.toString()}: ${it.name!!}: ${it.info!!}")
+//        Completable.fromAction { val id = dataBase.userDao().getAll() }
+//            .subscribeOn(Schedulers.io())
+//            .subscribe()
+
+        dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
+            // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
+            if (users != null) {
+                // TODO ユーザー一覧をRecyclerViewなどで表示
+                Log.d("TestTags","TestMan")
+                for (u in 0 until users.size) {
+                    dateMutableList.add(users[u].userId.toString())
+                    titleMutableList.add(users[u].name!!)
+                    contentMutableList.add(users[u].info!!)
+                }
+
+                // データ作成
+                if (mDataList.isEmpty()) {
+                    for (i in 0 until dateMutableList.size) {
+                        mDataList.add(
+                            OutputDataClass(
+                                dateMutableList[i],
+                                titleMutableList[i],
+                                contentMutableList[i]
+                            )
+                        )
+                        Log.d("TabDataSet", "Tab1:DataNum $i")
+                    }
+                }
+                // Adapter作成
+                val adapter = OutputAdapter(mDataList)
+
+                // RecyclerViewにAdapterとLayoutManagerの設定
+                viewLayout.tab1_recyclerView.adapter = adapter
+                viewLayout.tab1_recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             }
-
-
-        Completable.fromAction { val id = database.userDao().getAll() }
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        })
 
         //データセット
-//        for (u in 0 until userList.size) {
-//            dateMutableList.add(userList[u].userId.toString())
-//            titleMutableList.add(userList[u].name!!)
-//            contentMutableList.add(userList[u].info!!)
-//        }
 
-        // データ作成
-        if (mDataList.isEmpty()) {
-            for (i in 0 until dateMutableList.size) {
-                mDataList.add(
-                    OutputDataClass(
-                        dateMutableList[i],
-                        titleMutableList[i],
-                        contentMutableList[i]
-                    )
-                )
-                Log.d("TabDataSet", "Tab1:DataNum $i")
-            }
-        }
-        // Adapter作成
-        val adapter = OutputAdapter(mDataList)
-
-        // RecyclerViewにAdapterとLayoutManagerの設定
-        viewLayout.tab1_recyclerView.adapter = adapter
-        viewLayout.tab1_recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         return viewLayout
     }
