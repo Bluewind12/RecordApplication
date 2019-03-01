@@ -24,8 +24,6 @@ class OutputFragment : Fragment() {
     private var titleMutableList: MutableList<String> = mutableListOf()
     private var contentMutableList: MutableList<String> = mutableListOf()
 
-    private lateinit var userList: List<User>
-
     private var mDataList: ArrayList<OutputDataClass> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
