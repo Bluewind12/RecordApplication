@@ -10,8 +10,7 @@ import android.view.ViewGroup
 import com.facebook.stetho.Stetho
 import io.reactivex.Completable.fromAction
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.tab_tab3_input_layout.*
-import kotlinx.android.synthetic.main.tab_tab3_input_layout.view.*
+import kotlinx.android.synthetic.main.input_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.database.AppDataBase
 import momonyan.recordapplication.database.User
@@ -21,7 +20,7 @@ class InputFragment : Fragment() {
     private lateinit var viewLayout: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewLayout = inflater.inflate(R.layout.tab_tab3_input_layout, container, false)
+        viewLayout = inflater.inflate(R.layout.input_layout, container, false)
 
         //Stetho
         Stetho.initialize(

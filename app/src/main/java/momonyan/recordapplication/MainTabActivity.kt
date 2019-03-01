@@ -1,9 +1,12 @@
 package momonyan.recordapplication
 
 import android.arch.persistence.room.Room
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.tab_main_layout.*
 import momonyan.recordapplication.database.AppDataBase
 
@@ -22,7 +25,19 @@ class MainTabActivity : AppCompatActivity() {
         tabLayout.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
     }
 
-    fun getDatabase(): AppDataBase {
-        return db
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.mainMenu1 -> {
+                startActivity(Intent(this, InputActivity::class.java))
+            }
+            else -> error("対象外エラー１")
+        }
+        return true
     }
 }
