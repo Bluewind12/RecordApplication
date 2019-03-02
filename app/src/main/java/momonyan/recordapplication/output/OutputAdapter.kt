@@ -5,20 +5,20 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import momonyan.recordapplication.R
 
-class OutputAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.Adapter<MemoHolder>() {
+class OutputAdapter(private val mValues: ArrayList<OutputDataClass>) : RecyclerView.Adapter<OutputHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OutputHolder {
         //レイアウトの設定(inflate)
         val view = LayoutInflater.from(parent.context).inflate(R.layout.output_card_layout, parent, false)
         //Holderの生成
-        return MemoHolder(view)
+        return OutputHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MemoHolder, position: Int) {
+    override fun onBindViewHolder(holder: OutputHolder, position: Int) {
         val item = mValues[position]
-        holder.mMemoDateText.text = item.date
-        holder.mMemoCheck.text = item.title
-        holder.mMemoContentText.text = item.content
+        holder.mOutputDateText.text = item.date
+        holder.mOutputTitleText.text = item.title
+        holder.mOutputContentText.text = item.content
     }
 
     override fun getItemCount(): Int {

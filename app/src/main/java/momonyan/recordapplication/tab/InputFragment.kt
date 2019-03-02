@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.input_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.daze_database.AppDataBase
-import momonyan.recordapplication.daze_database.Memo
+import momonyan.recordapplication.daze_database.User
 
 class InputFragment : Fragment() {
 
@@ -35,7 +35,7 @@ class InputFragment : Fragment() {
                 .build()
 
         // データモデルを作成
-        val user = Memo()
+        val user = User()
 
         viewLayout.inputButton.setOnClickListener {
             Log.d("Test", "YES")

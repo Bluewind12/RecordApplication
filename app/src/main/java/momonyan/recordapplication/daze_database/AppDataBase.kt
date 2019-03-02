@@ -8,7 +8,4 @@ abstract class AppDataBase : RoomDatabase() {
 
     // DAOを取得する。
     abstract fun userDao(): UserDao
-
-    // valでも良い。
-    // abstract val dao: MemoDao
 }

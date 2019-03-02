@@ -10,7 +10,7 @@ import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.input_layout.*
 import momonyan.recordapplication.daze_database.AppDataBase
-import momonyan.recordapplication.daze_database.Memo
+import momonyan.recordapplication.daze_database.User
 
 class InputActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class InputActivity : AppCompatActivity() {
                 .build()
 
         // データモデルを作成
-        val user = Memo()
+        val user = User()
 
         inputButton.setOnClickListener {
             Log.d("Test", "YES")

@@ -9,7 +9,7 @@ import io.reactivex.Completable.fromAction
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import momonyan.recordapplication.daze_database.AppDataBase
-import momonyan.recordapplication.daze_database.Memo
+import momonyan.recordapplication.daze_database.User
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val db = Room.databaseBuilder(applicationContext, AppDataBase::class.java, "TestDataBase.db").build()
 
         // データモデルを作成
-        val user = Memo()
+        val user = User()
 
         button.setOnClickListener {
             Log.d("Test", "YES")

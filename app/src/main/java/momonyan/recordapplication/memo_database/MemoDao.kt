@@ -11,16 +11,8 @@ import android.arch.persistence.room.Query
 interface MemoDao {
 
     // シンプルなSELECTクエリ
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM memo")
     fun getAll(): LiveData<List<Memo>>
-
-    // メソッドの引数をSQLのパラメーターにマッピングするには :引数名 と書く
-    @Query("SELECT * FROM user WHERE userId IN (:userIds)")
-    fun loadAllaByIds(vararg userIds: Int): List<Memo>
-
-    // 複数の引数も渡せる
-    @Query("SELECT * FROM user WHERE name LIKE :first AND info LIKE :last LIMIT 1")
-    fun findByName(first: String, last: String): Memo
 
     // データモデルのクラスを引数に渡すことで、データの作成ができる。
     @Insert
@@ -28,17 +20,14 @@ interface MemoDao {
 
     // 可変長引数にしたり
     @Insert
-    fun insertAll(vararg users: Memo)
+    fun insertAll(vararg memos: Memo)
 
     // Listで渡したりもできる
     @Insert
-    fun insertAll(users: List<Memo>)
+    fun insertAll(memos: List<Memo>)
 
     // データモデルのクラスを引数に渡すことで、データの削除ができる。主キーでデータを検索して削除する場合。
     @Delete
     fun delete(memo: Memo)
 
-    // 複雑な条件で削除したい場合は、@Queryを使ってSQLを書く
-    @Query("DELETE FROM user WHERE age < :age")
-    fun deleteYoungerThan(age: Int)
 }

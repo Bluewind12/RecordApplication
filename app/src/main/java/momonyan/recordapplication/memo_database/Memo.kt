@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity
 class Memo {
     @PrimaryKey(autoGenerate = true)
-    var userId: Int = 0
+    var memoId: Int = 0
 
     @ColumnInfo(name = "check")
     var check: Boolean? = null
