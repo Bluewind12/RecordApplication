@@ -43,10 +43,6 @@ class OutputFragment : Fragment() {
                 .build()
 
 
-//        Completable.fromAction { val id = dataBase.userDao().getAll() }
-//            .subscribeOn(Schedulers.io())
-//            .subscribe()
-
         dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
             if (users != null) {

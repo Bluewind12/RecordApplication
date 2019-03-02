@@ -15,17 +15,25 @@
                                         app:cardUseCompatPadding="true"
                                         app:cardCornerRadius="10dp"
     >
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:orientation="horizontal" android:paddingLeft="5sp" android:paddingRight="0sp"
-                      android:paddingStart="5sp" android:paddingEnd="0sp">
-
-            <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/memoCheckBox" android:layout_weight="1"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
             <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/memoContentView" android:layout_weight="1"
-                    tools:text="内容" android:padding="4dp"/>
+                    android:layout_height="wrap_content" android:id="@+id/memoIdTextView" tools:text="IDs"/>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:orientation="horizontal" android:paddingLeft="5sp" android:paddingRight="0sp"
+                          android:paddingStart="5sp" android:paddingEnd="0sp">
+
+                <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/memoCheckBox" android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/memoContentView" android:layout_weight="1"
+                        tools:text="内容" android:padding="4dp"/>
+            </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

@@ -21,6 +21,7 @@ import momonyan.recordapplication.memo_database.Memo
 class MemoFragment: Fragment(){
     private var mDataList: ArrayList<MemoDataClass> = ArrayList()
 
+    private var idMutableList: MutableList<Int> = mutableListOf()
     private var booleanMutableList: MutableList<Boolean> = mutableListOf()
     private var contentMutableList: MutableList<String> = mutableListOf()
 
@@ -53,6 +54,7 @@ class MemoFragment: Fragment(){
                 // TODO ユーザー一覧をRecyclerViewなどで表示
                 Log.d("TestTags", "TestMan")
                 for (u in 0 until memos.size) {
+                    idMutableList.add(memos[u].memoId)
                     booleanMutableList.add(memos[u].check!!)
                     contentMutableList.add(memos[u].content!!)
                 }
@@ -62,11 +64,12 @@ class MemoFragment: Fragment(){
                     for (i in 0 until booleanMutableList.size) {
                         mDataList.add(
                             MemoDataClass(
+                                idMutableList[i],
                                 booleanMutableList[i],
                                 contentMutableList[i]
                             )
                         )
-                        Log.d("TabDataSet", "Tab1:DataNum $i")
+                        Log.d("TabDataSet", "Tab2:DataNum $i")
                     }
                 }
                 // Adapter作成

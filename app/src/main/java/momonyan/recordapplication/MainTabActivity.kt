@@ -1,6 +1,5 @@
 package momonyan.recordapplication
 
-import android.arch.persistence.room.Room
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -9,18 +8,14 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.tab_main_layout.*
-import momonyan.recordapplication.daze_database.AppDataBase
 
 
 class MainTabActivity : AppCompatActivity() {
     private lateinit var mSectionsPagerAdapter: TabAdapter
-    lateinit var db: AppDataBase
     private var frag: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        db = Room.databaseBuilder(applicationContext, AppDataBase::class.java, "TestDataBase.db").build()
-
 
         setContentView(R.layout.tab_main_layout)
         mSectionsPagerAdapter = TabAdapter(supportFragmentManager)

@@ -8,14 +8,14 @@ import android.util.Log
 import com.facebook.stetho.Stetho
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.input_layout.*
-import momonyan.recordapplication.daze_database.AppDataBase
-import momonyan.recordapplication.daze_database.User
+import kotlinx.android.synthetic.main.input_memo_layout.*
+import momonyan.recordapplication.memo_database.AppMemoDataBase
+import momonyan.recordapplication.memo_database.Memo
 
 class MemoInputActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.input_layout)
+        setContentView(R.layout.input_memo_layout)
 
 
         //Stetho
@@ -27,20 +27,18 @@ class MemoInputActivity : AppCompatActivity() {
         )
         //
         val dataBase =
-            Room.databaseBuilder(applicationContext, AppDataBase::class.java, "TestDataBase.db")
+            Room.databaseBuilder(applicationContext, AppMemoDataBase::class.java, "MemoDataBase.db")
                 .build()
 
         // データモデルを作成
-        val user = User()
+        val memo = Memo()
 
-        inputButton.setOnClickListener {
+        memoButton.setOnClickListener {
             Log.d("Test", "YES")
-            user.name = nameInput.text.toString()
-            user.info = infoInput.text.toString()
-            if (ageInput.text.toString() != "") {
-                user.age = ageInput.text.toString().toInt()
-            }
-            Completable.fromAction { val id = dataBase.userDao().insert(user) }
+            memo.check = false
+            memo.content = memoInput.text.toString()
+
+            Completable.fromAction { val id = dataBase.memoDao().insert(memo) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
 

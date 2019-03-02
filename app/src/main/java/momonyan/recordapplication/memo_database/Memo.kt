@@ -14,7 +14,4 @@ class Memo {
 
     @ColumnInfo(name = "content")
     var content: String? = null
-
-    var age: Int = 0
-
 }
