@@ -11,5 +11,5 @@ class OutputHolder(mView: View) : RecyclerView.ViewHolder(mView) {
     val mOutputTitleText: TextView = mView.titleTextView   //題名
     val mOutputContentText: TextView = mView.contentTextView   //内容
 
-    val mOutputCard: CardView = mView.outputCardView    //カードビュー
+    val mOutputCard: CardView = mView.memoCardView    //カードビュー
 }

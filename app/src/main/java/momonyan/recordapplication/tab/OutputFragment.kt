@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.tab_tab1_output_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.database.AppDataBase
 import momonyan.recordapplication.database.User
-import momonyan.recordapplication.output.OutputAdapter
-import momonyan.recordapplication.output.OutputDataClass
+import momonyan.recordapplication.output.MemoAdapter
+import momonyan.recordapplication.output.MemoDataClass
 
 class OutputFragment : Fragment() {
     //表示用レイアウト
@@ -24,7 +24,7 @@ class OutputFragment : Fragment() {
     private var titleMutableList: MutableList<String> = mutableListOf()
     private var contentMutableList: MutableList<String> = mutableListOf()
 
-    private var mDataList: ArrayList<OutputDataClass> = ArrayList()
+    private var mDataList: ArrayList<MemoDataClass> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewLayout = inflater.inflate(R.layout.tab_tab1_output_layout, container, false)
@@ -62,7 +62,7 @@ class OutputFragment : Fragment() {
                 if (mDataList.isEmpty()) {
                     for (i in 0 until dateMutableList.size) {
                         mDataList.add(
-                            OutputDataClass(
+                            MemoDataClass(
                                 dateMutableList[i],
                                 titleMutableList[i],
                                 contentMutableList[i]
@@ -72,7 +72,7 @@ class OutputFragment : Fragment() {
                     }
                 }
                 // Adapter作成
-                val adapter = OutputAdapter(mDataList)
+                val adapter = MemoAdapter(mDataList)
 
                 // RecyclerViewにAdapterとLayoutManagerの設定
                 viewLayout.tab1_recyclerView.adapter = adapter

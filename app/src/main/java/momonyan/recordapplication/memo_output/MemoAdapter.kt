@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import momonyan.recordapplication.R
 
-class OutputAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.Adapter<MemoHolder>() {
+class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.Adapter<MemoHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoHolder {
         //レイアウトの設定(inflate)
@@ -16,7 +16,6 @@ class OutputAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerVie
 
     override fun onBindViewHolder(holder: MemoHolder, position: Int) {
         val item = mValues[position]
-        holder.mMemoDateText.text = item.date
         holder.mMemoCheck.text = item.title
         holder.mMemoContentText.text = item.content
     }
