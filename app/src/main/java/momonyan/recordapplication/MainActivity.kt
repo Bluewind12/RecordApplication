@@ -8,8 +8,8 @@ import com.facebook.stetho.Stetho
 import io.reactivex.Completable.fromAction
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import momonyan.recordapplication.database.AppDataBase
-import momonyan.recordapplication.database.User
+import momonyan.recordapplication.daze_database.AppDataBase
+import momonyan.recordapplication.daze_database.Memo
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val db = Room.databaseBuilder(applicationContext, AppDataBase::class.java, "TestDataBase.db").build()
 
         // データモデルを作成
-        val user = User()
+        val user = Memo()
 
         button.setOnClickListener {
             Log.d("Test", "YES")

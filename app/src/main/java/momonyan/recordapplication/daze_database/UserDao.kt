@@ -1,4 +1,4 @@
-package momonyan.recordapplication.database
+package momonyan.recordapplication.daze_database
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao

@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.tab_main_layout.*
-import momonyan.recordapplication.database.AppDataBase
+import momonyan.recordapplication.daze_database.AppDataBase
 
 class MainTabActivity : AppCompatActivity() {
     private lateinit var mSectionsPagerAdapter: TabAdapter

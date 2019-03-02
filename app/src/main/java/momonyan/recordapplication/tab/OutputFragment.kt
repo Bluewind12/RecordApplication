@@ -12,8 +12,8 @@ import android.view.ViewGroup
 import com.facebook.stetho.Stetho
 import kotlinx.android.synthetic.main.tab_tab1_output_layout.view.*
 import momonyan.recordapplication.R
-import momonyan.recordapplication.database.AppDataBase
-import momonyan.recordapplication.database.User
+import momonyan.recordapplication.daze_database.AppDataBase
+import momonyan.recordapplication.daze_database.Memo
 import momonyan.recordapplication.output.MemoAdapter
 import momonyan.recordapplication.output.MemoDataClass
 
@@ -47,7 +47,7 @@ class OutputFragment : Fragment() {
 //            .subscribeOn(Schedulers.io())
 //            .subscribe()
 
-        dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
+        dataBase.userDao().getAll().observe(this, Observer<List<Memo>> { users ->
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
             if (users != null) {
                 // TODO ユーザー一覧をRecyclerViewなどで表示
