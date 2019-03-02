@@ -1,9 +1,10 @@
-package momonyan.recordapplication.daze_output
+package momonyan.recordapplication.memo
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import momonyan.recordapplication.R
+
 
 class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.Adapter<MemoHolder>() {
 
@@ -16,8 +17,8 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
 
     override fun onBindViewHolder(holder: MemoHolder, position: Int) {
         val item = mValues[position]
-        holder.mMemoCheck.text = item.title
-        holder.mMemoContentText.text = item.content
+        holder.mMemoCheck.isChecked = item.check
+        holder.mContentTextView.text = item.content
     }
 
     override fun getItemCount(): Int {

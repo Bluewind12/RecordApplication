@@ -1,4 +1,4 @@
-package momonyan.recordapplication.output
+package momonyan.recordapplication.daze_output
 
 class MemoDataClass(
     var date: String,

@@ -1,4 +1,4 @@
-package momonyan.recordapplication.output
+package momonyan.recordapplication.daze_output
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

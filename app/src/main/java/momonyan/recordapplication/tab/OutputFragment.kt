@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.tab_tab1_output_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.daze_database.AppDataBase
 import momonyan.recordapplication.daze_database.User
-import momonyan.recordapplication.output.MemoAdapter
-import momonyan.recordapplication.output.MemoDataClass
+import momonyan.recordapplication.daze_output.MemoAdapter
+import momonyan.recordapplication.daze_output.MemoDataClass
 
 class OutputFragment : Fragment() {
     //表示用レイアウト
