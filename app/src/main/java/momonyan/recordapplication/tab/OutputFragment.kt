@@ -20,6 +20,7 @@ import momonyan.recordapplication.daze_output.OutputDataClass
 class OutputFragment : Fragment() {
     //表示用レイアウト
     private lateinit var viewLayout: View
+    private var userIdsMutableList: MutableList<Int> = mutableListOf()
     private var dateMutableList: MutableList<String> = mutableListOf()
     private var titleMutableList: MutableList<String> = mutableListOf()
     private var contentMutableList: MutableList<String> = mutableListOf()
@@ -42,13 +43,14 @@ class OutputFragment : Fragment() {
             Room.databaseBuilder(activity!!.applicationContext, AppDataBase::class.java, "TestDataBase.db")
                 .build()
 
-
+        var frag = true
         dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
-            if (users != null) {
+            if (users != null && frag) {
                 // TODO ユーザー一覧をRecyclerViewなどで表示
                 Log.d("TestTags","TestMan")
                 for (u in 0 until users.size) {
+                    userIdsMutableList.add(users[u].userId)
                     dateMutableList.add(users[u].userId.toString())
                     titleMutableList.add(users[u].name!!)
                     contentMutableList.add(users[u].info!!)
@@ -59,6 +61,7 @@ class OutputFragment : Fragment() {
                     for (i in 0 until dateMutableList.size) {
                         mDataList.add(
                             OutputDataClass(
+                                userIdsMutableList[i],
                                 dateMutableList[i],
                                 titleMutableList[i],
                                 contentMutableList[i]
@@ -69,10 +72,13 @@ class OutputFragment : Fragment() {
                 }
                 // Adapter作成
                 val adapter = OutputAdapter(mDataList)
+                adapter.isDataBase(dataBase)
+                adapter.isActivity(activity!!)
 
                 // RecyclerViewにAdapterとLayoutManagerの設定
                 viewLayout.tab1_recyclerView.adapter = adapter
                 viewLayout.tab1_recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                frag = false
             }
         })
 

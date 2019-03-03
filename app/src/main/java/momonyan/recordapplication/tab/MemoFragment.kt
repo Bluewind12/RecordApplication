@@ -45,21 +45,6 @@ class MemoFragment : Fragment() {
             Room.databaseBuilder(activity!!.applicationContext, AppMemoDataBase::class.java, "MemoDataBase.db")
                 .build()
 
-        // データモデルを作成
-        val memo = Memo()
-
-        Log.d("Test", "YES")
-        memo.check = false
-        memo.content = "TEST"
-        Completable.fromAction { dataBase.memoDao().insert(memo) }
-            .subscribeOn(Schedulers.io())
-            .subscribe()
-
-
-//        Completable.fromAction { val id = dataBase.userDao().getAll() }
-//            .subscribeOn(Schedulers.io())
-//            .subscribe()
-
         var frag = true
 
         dataBase.memoDao().getAll().observe(this, Observer<List<Memo>> { memos ->
@@ -91,7 +76,6 @@ class MemoFragment : Fragment() {
                 // Adapter作成
                 val adapter = MemoAdapter(mDataList)
                 adapter.isDataBase(dataBase)
-                adapter.isHandler(handler)
                 adapter.isActivity(activity!!)
 
 

@@ -2,7 +2,6 @@ package momonyan.recordapplication.memo
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import momonyan.recordapplication.memo_database.AppMemoDataBase
 
 class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.Adapter<MemoHolder>() {
     private lateinit var dataBase: AppMemoDataBase
-    private lateinit var handler: Handler
     private lateinit var activity: Activity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoHolder {
@@ -39,11 +37,8 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
                     // OK button pressed
                     Completable.fromAction { dataBase.memoDao().deleteId(item.id) }
                         .subscribeOn(Schedulers.io())
-                        .subscribe {
-                            // Handlerを使用してメイン(UI)スレッドに処理を依頼する
-                            handler.post { holder.mMemoCardView.visibility = View.GONE }
-                        }
-
+                        .subscribe()
+                    holder.mMemoCardView.visibility = View.GONE
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
@@ -54,10 +49,6 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
 
     fun isDataBase(db: AppMemoDataBase) {
         dataBase = db
-    }
-
-    fun isHandler(hn: Handler) {
-        handler = hn
     }
 
     fun isActivity(act: Activity) {

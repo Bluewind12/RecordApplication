@@ -38,4 +38,8 @@ interface UserDao {
     @Delete
     fun delete(user: User)
 
+    // 条件でDelete
+    @Query("DELETE FROM user WHERE userId = :id")
+    fun deleteId(id: Int)
+
 }
