@@ -15,6 +15,4 @@ class User {
     @ColumnInfo(name = "info")
     var info: String? = null
 
-    var age: Int = 0
-
 }

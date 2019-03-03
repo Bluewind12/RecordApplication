@@ -41,14 +41,9 @@ class InputFragment : Fragment() {
             Log.d("Test", "YES")
             user.name = viewLayout.nameInput.text.toString()
             user.info = viewLayout.infoInput.text.toString()
-            if (viewLayout.ageInput.text.toString() != "") {
-                user.age = viewLayout.ageInput.text.toString().toInt()
-            }
-            fromAction { val id = dataBase.userDao().insert(user) }
+            fromAction { dataBase.userDao().insert(user) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
-
-
         }
 
         return viewLayout

@@ -37,10 +37,7 @@ class InputActivity : AppCompatActivity() {
             Log.d("Test", "YES")
             user.name = nameInput.text.toString()
             user.info = infoInput.text.toString()
-            if (ageInput.text.toString() != "") {
-                user.age = ageInput.text.toString().toInt()
-            }
-            Completable.fromAction { val id = dataBase.userDao().insert(user) }
+            Completable.fromAction { dataBase.userDao().insert(user) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
 

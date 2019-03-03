@@ -38,7 +38,4 @@ interface UserDao {
     @Delete
     fun delete(user: User)
 
-    // 複雑な条件で削除したい場合は、@Queryを使ってSQLを書く
-    @Query("DELETE FROM user WHERE age < :age")
-    fun deleteYoungerThan(age: Int)
 }

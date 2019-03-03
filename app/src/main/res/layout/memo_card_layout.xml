@@ -12,9 +12,8 @@
                                         app:layout_constraintTop_toTopOf="parent"
                                         android:id="@+id/memoCardView"
                                         app:layout_constraintBottom_toBottomOf="parent"
-                                        app:cardUseCompatPadding="true"
                                         app:cardCornerRadius="10dp"
-    >
+                                        app:cardUseCompatPadding="true">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"

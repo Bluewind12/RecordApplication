@@ -37,8 +37,7 @@ class MemoInputActivity : AppCompatActivity() {
             Log.d("Test", "YES")
             memo.check = false
             memo.content = memoInput.text.toString()
-
-            Completable.fromAction { val id = dataBase.memoDao().insert(memo) }
+            Completable.fromAction { dataBase.memoDao().insert(memo) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
 

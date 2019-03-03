@@ -33,9 +33,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("Test", "YES")
             user.name = nameEditText.text.toString()
             user.info = infoEditText.text.toString()
-            if (ageEditText.text.toString() != "") {
-                user.age = ageEditText.text.toString().toInt()
-            }
             fromAction { val id = db.userDao().insert(user) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
