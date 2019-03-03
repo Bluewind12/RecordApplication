@@ -72,13 +72,10 @@ class MemoFragment : Fragment() {
                     }
                 }
 
-                val handler = Handler()
                 // Adapter作成
                 val adapter = MemoAdapter(mDataList)
                 adapter.isDataBase(dataBase)
                 adapter.isActivity(activity!!)
-
-
 
                 // RecyclerViewにAdapterとLayoutManagerの設定
                 viewLayout.tab2_recyclerView.adapter = adapter
