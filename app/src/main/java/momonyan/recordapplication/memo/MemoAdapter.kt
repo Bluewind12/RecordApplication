@@ -1,5 +1,7 @@
 package momonyan.recordapplication.memo
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import momonyan.recordapplication.memo_database.AppMemoDataBase
 class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.Adapter<MemoHolder>() {
     private lateinit var dataBase: AppMemoDataBase
     private lateinit var handler: Handler
+    private lateinit var activity: Activity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoHolder {
         //レイアウトの設定(inflate)
@@ -28,12 +31,22 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
         holder.mMemoCheck.isChecked = item.check
         holder.mContentTextView.text = item.content
         holder.itemView.setOnLongClickListener {
-            Completable.fromAction { dataBase.memoDao().deleteId(item.id) }
-                .subscribeOn(Schedulers.io())
-                .subscribe {
-                    // Handlerを使用してメイン(UI)スレッドに処理を依頼する
-                    handler.post { holder.mMemoCardView.visibility = View.GONE }
+
+            AlertDialog.Builder(activity)
+                .setTitle("削除します")
+                .setMessage("「${item.content}」\nを削除します\nよろしいですか？")
+                .setPositiveButton("OK") { _, _ ->
+                    // OK button pressed
+                    Completable.fromAction { dataBase.memoDao().deleteId(item.id) }
+                        .subscribeOn(Schedulers.io())
+                        .subscribe {
+                            // Handlerを使用してメイン(UI)スレッドに処理を依頼する
+                            handler.post { holder.mMemoCardView.visibility = View.GONE }
+                        }
+
                 }
+                .setNegativeButton("Cancel", null)
+                .show()
 
             true
         }
@@ -45,6 +58,10 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
 
     fun isHandler(hn: Handler) {
         handler = hn
+    }
+
+    fun isActivity(act: Activity) {
+        activity = act
     }
 
     override fun getItemCount(): Int {

@@ -92,6 +92,7 @@ class MemoFragment : Fragment() {
                 val adapter = MemoAdapter(mDataList)
                 adapter.isDataBase(dataBase)
                 adapter.isHandler(handler)
+                adapter.isActivity(activity!!)
 
 
 
