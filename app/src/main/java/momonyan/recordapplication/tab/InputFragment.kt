@@ -39,8 +39,8 @@ class InputFragment : Fragment() {
 
         viewLayout.inputButton.setOnClickListener {
             Log.d("Test", "YES")
-            user.name = viewLayout.nameInput.text.toString()
-            user.info = viewLayout.infoInput.text.toString()
+            user.title = viewLayout.titleInput.text.toString()
+            user.content = viewLayout.contentInput.text.toString()
             fromAction { dataBase.userDao().insert(user) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()

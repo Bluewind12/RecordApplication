@@ -19,7 +19,7 @@ interface UserDao {
     fun loadAllaByIds(vararg userIds: Int): List<User>
 
     // 複数の引数も渡せる
-    @Query("SELECT * FROM user WHERE name LIKE :first AND info LIKE :last LIMIT 1")
+    @Query("SELECT * FROM user WHERE title LIKE :first AND content LIKE :last LIMIT 1")
     fun findByName(first: String, last: String): User
 
     // データモデルのクラスを引数に渡すことで、データの作成ができる。

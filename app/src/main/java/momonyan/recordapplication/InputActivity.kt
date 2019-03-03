@@ -11,6 +11,8 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.input_layout.*
 import momonyan.recordapplication.daze_database.AppDataBase
 import momonyan.recordapplication.daze_database.User
+import java.text.SimpleDateFormat
+import java.util.*
 
 class InputActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +37,9 @@ class InputActivity : AppCompatActivity() {
 
         inputButton.setOnClickListener {
             Log.d("Test", "YES")
-            user.name = nameInput.text.toString()
-            user.info = infoInput.text.toString()
+            user.title = titleInput.text.toString()
+            user.content = contentInput.text.toString()
+            user.day = getToday()
             Completable.fromAction { dataBase.userDao().insert(user) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
@@ -47,5 +50,11 @@ class InputActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    fun getToday(): String {
+        val date = Date()
+        val format = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
+        return format.format(date)
     }
 }

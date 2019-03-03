@@ -9,10 +9,13 @@ class User {
     @PrimaryKey(autoGenerate = true)
     var userId: Int = 0
 
-    @ColumnInfo(name = "name")
-    var name: String? = null
+    @ColumnInfo(name = "title")
+    var title: String? = null
 
-    @ColumnInfo(name = "info")
-    var info: String? = null
+    @ColumnInfo(name = "content")
+    var content: String? = null
+
+    @ColumnInfo(name = "days")
+    var day: String? = null
 
 }

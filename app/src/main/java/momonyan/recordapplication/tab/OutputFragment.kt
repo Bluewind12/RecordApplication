@@ -51,9 +51,9 @@ class OutputFragment : Fragment() {
                 Log.d("TestTags","TestMan")
                 for (u in 0 until users.size) {
                     userIdsMutableList.add(users[u].userId)
-                    dateMutableList.add(users[u].userId.toString())
-                    titleMutableList.add(users[u].name!!)
-                    contentMutableList.add(users[u].info!!)
+                    dateMutableList.add(users[u].day!!)
+                    titleMutableList.add(users[u].title!!)
+                    contentMutableList.add(users[u].content!!)
                 }
 
                 // データ作成
