@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="書き込み" android:id="@+id/mainMenu1"/>
-    <item android:title="Memo" android:id="@+id/mainMenu2"/>
+    <item android:title="@string/dazeInputOption" android:id="@+id/mainMenu1"/>
+    <item android:title="@string/memoInputOption" android:id="@+id/mainMenu2"/>
 </menu>

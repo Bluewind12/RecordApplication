@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">RecordApplication</string>
+
+    <!-- Tabの名前 -->
+    <string name="tab1Name">Tab1</string>
+    <string name="tab2Name">Tab2</string>
+    <string name="tab3Name">Tab3</string>
+
+    <!-- 入力画面 -->
+    <string name="dazeInput">日記登録</string>
+    <string name="memoInput">メモ追加</string>
+
+    <!-- オプションメニュー -->
+    <string name="dazeInputOption">日記入力</string>
+    <string name="memoInputOption">メモ入力</string>
+
+    <!-- 日記ページ -->
+    <string name="title">題名</string>
+    <string name="contentString">内容</string>
+
+    <!-- Memoページ -->
+    <string name="memoString">メモ</string>
+
+    <!-- 共通 -->
+    <string name="input">登録</string>
 </resources>
