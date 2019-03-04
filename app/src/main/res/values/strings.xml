@@ -23,4 +23,7 @@
 
     <!-- 共通 -->
     <string name="input">登録</string>
+    <string name="cancelString">キャンセル</string>
+    <string name="OKString">決定</string>
+    <string name="backColorChange">背景カラー変更</string>
 </resources>
