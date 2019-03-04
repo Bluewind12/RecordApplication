@@ -82,8 +82,7 @@ class InputActivity : AppCompatActivity() {
                 val green = Color.green(color)
                 val blue = Color.blue(color)
 
-                val cont =
-                    Log.d("Color", "red:$red, green:$green, blue:$blue")
+                Log.d("Color", "red:$red, green:$green, blue:$blue")
                 Log.d("Color", "color:$color")
 
                 testDazeCardView.setCardBackgroundColor(colorInt)

@@ -3,7 +3,6 @@ package momonyan.recordapplication.tab
 import android.arch.lifecycle.Observer
 import android.arch.persistence.room.Room
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -11,8 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.facebook.stetho.Stetho
-import io.reactivex.Completable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.tab_tab2_memo_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.memo.MemoAdapter
@@ -24,9 +21,12 @@ import momonyan.recordapplication.memo_database.Memo
 class MemoFragment : Fragment() {
     private var mDataList: ArrayList<MemoDataClass> = ArrayList()
 
-    private var idMutableList: MutableList<Int> = mutableListOf()
-    private var booleanMutableList: MutableList<Boolean> = mutableListOf()
-    private var contentMutableList: MutableList<String> = mutableListOf()
+    private var idMutableList: MutableList<Int> = mutableListOf()//id
+    private var booleanMutableList: MutableList<Boolean> = mutableListOf()//チェック
+    private var contentMutableList: MutableList<String> = mutableListOf()//内容
+    private var colorMutableList: MutableList<Int> = mutableListOf()//背景
+    private var textColorMutableList: MutableList<Int> = mutableListOf()//文字
+
 
     private lateinit var viewLayout: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,6 +56,8 @@ class MemoFragment : Fragment() {
                     idMutableList.add(memos[u].memoId)
                     booleanMutableList.add(memos[u].check!!)
                     contentMutableList.add(memos[u].content!!)
+                    colorMutableList.add(memos[u].color)
+                    textColorMutableList.add(memos[u].textColor)
                 }
 
                 // データ作成
@@ -65,7 +67,9 @@ class MemoFragment : Fragment() {
                             MemoDataClass(
                                 idMutableList[i],
                                 booleanMutableList[i],
-                                contentMutableList[i]
+                                contentMutableList[i],
+                                colorMutableList[i],
+                                textColorMutableList[i]
                             )
                         )
                         Log.d("TabDataSet", "Tab2:DataNum $i")

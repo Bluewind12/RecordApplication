@@ -28,6 +28,12 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
         holder.mIdTextView.text = item.id.toString()
         holder.mMemoCheck.isChecked = item.check
         holder.mContentTextView.text = item.content
+
+
+        holder.mIdTextView.setTextColor(item.textColor)
+        holder.mContentTextView.setTextColor(item.textColor)
+
+        holder.mMemoCardView.setCardBackgroundColor(item.backColor)
         holder.itemView.setOnLongClickListener {
 
             AlertDialog.Builder(activity)
@@ -39,6 +45,7 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
                         .subscribeOn(Schedulers.io())
                         .subscribe()
                     holder.mMemoCardView.visibility = View.GONE
+                    holder.mMemoCheck.visibility = View.GONE
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
