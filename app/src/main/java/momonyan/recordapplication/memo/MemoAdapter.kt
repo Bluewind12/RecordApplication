@@ -52,6 +52,12 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
 
             true
         }
+
+        holder.mMemoCheck.setOnClickListener {
+            Completable.fromAction { dataBase.memoDao().updateMemo(item.id, holder.mMemoCheck.isChecked) }
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+        }
     }
 
     fun isDataBase(db: AppMemoDataBase) {
