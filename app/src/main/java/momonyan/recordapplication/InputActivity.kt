@@ -2,6 +2,7 @@ package momonyan.recordapplication
 
 import android.arch.persistence.room.Room
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -19,12 +20,15 @@ import java.util.*
 
 class InputActivity : AppCompatActivity() {
 
-    var color = 0xFFFFFF
+    private var color = 0xFFFFFF
+    private var darkLight = 0xFFFFFF
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.input_layout)
 
+        color = resources.getColor(R.color.darkText)
+        darkLight = resources.getColor(R.color.lightText)
 
         //Stetho
         Stetho.initialize(
@@ -46,6 +50,8 @@ class InputActivity : AppCompatActivity() {
             user.title = titleInput.text.toString()
             user.content = contentInput.text.toString()
             user.day = getToday()
+            user.color = color
+            user.colorDL = darkLight
             Completable.fromAction { dataBase.userDao().insert(user) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
@@ -72,8 +78,23 @@ class InputActivity : AppCompatActivity() {
             }
             view.colorOkButton.setOnClickListener {
                 color = colorInt
-                dazeCardView.setCardBackgroundColor(colorInt)
+                val red = Color.red(color)
+                val green = Color.green(color)
+                val blue = Color.blue(color)
+
+                val cont =
+                    Log.d("Color", "red:$red, green:$green, blue:$blue")
+                Log.d("Color", "color:$color")
+
+                testDazeCardView.setCardBackgroundColor(colorInt)
                 alert.dismiss()
+                if (red < 0xDD || blue < 0xDD || green < 0xDD) {
+                    testDazeText.setTextColor(resources.getColor(R.color.darkText))
+                    darkLight = resources.getColor(R.color.darkText)
+                } else {
+                    testDazeText.setTextColor(resources.getColor(R.color.lightText))
+                    darkLight = resources.getColor(R.color.lightText)
+                }
             }
         }
 

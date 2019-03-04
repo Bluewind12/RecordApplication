@@ -20,10 +20,12 @@ import momonyan.recordapplication.daze_output.OutputDataClass
 class OutputFragment : Fragment() {
     //表示用レイアウト
     private lateinit var viewLayout: View
-    private var userIdsMutableList: MutableList<Int> = mutableListOf()
-    private var dateMutableList: MutableList<String> = mutableListOf()
-    private var titleMutableList: MutableList<String> = mutableListOf()
-    private var contentMutableList: MutableList<String> = mutableListOf()
+    private var userIdsMutableList: MutableList<Int> = mutableListOf()//ID
+    private var dateMutableList: MutableList<String> = mutableListOf()//日付
+    private var titleMutableList: MutableList<String> = mutableListOf()//題名
+    private var contentMutableList: MutableList<String> = mutableListOf()//内容
+    private var colorMutableList: MutableList<Int> = mutableListOf()//色
+    private var colorFragMutableList: MutableList<Int> = mutableListOf()//色の明るさのフラグ
 
     private var mDataList: ArrayList<OutputDataClass> = ArrayList()
 
@@ -54,6 +56,8 @@ class OutputFragment : Fragment() {
                     dateMutableList.add(users[u].day!!)
                     titleMutableList.add(users[u].title!!)
                     contentMutableList.add(users[u].content!!)
+                    colorMutableList.add(users[u].color)
+                    colorFragMutableList.add(users[u].colorDL)
                 }
 
                 // データ作成
@@ -64,7 +68,9 @@ class OutputFragment : Fragment() {
                                 userIdsMutableList[i],
                                 dateMutableList[i],
                                 titleMutableList[i],
-                                contentMutableList[i]
+                                contentMutableList[i],
+                                colorMutableList[i],
+                                colorFragMutableList[i]
                             )
                         )
                         Log.d("TabDataSet", "Tab1:DataNum $i")

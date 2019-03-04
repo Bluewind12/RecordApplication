@@ -4,6 +4,8 @@ class OutputDataClass(
     var id: Int,
     var date: String,
     var title: String,
-    var content: String
+    var content: String,
+    var color: Int,
+    var colorFrag: Int
 ) {
 }

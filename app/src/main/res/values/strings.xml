@@ -26,4 +26,5 @@
     <string name="cancelString">キャンセル</string>
     <string name="OKString">決定</string>
     <string name="backColorChange">背景カラー変更</string>
+    <string name="testViewString">テスト表示です</string>
 </resources>

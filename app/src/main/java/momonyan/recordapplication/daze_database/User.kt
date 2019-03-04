@@ -18,4 +18,10 @@ class User {
     @ColumnInfo(name = "days")
     var day: String? = null
 
+    @ColumnInfo(name = "color")
+    var color: Int = 0
+
+    @ColumnInfo(name = "Dark or Light")
+    var colorDL: Int = 0
+
 }

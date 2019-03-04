@@ -27,6 +27,13 @@ class OutputAdapter(private val mValues: ArrayList<OutputDataClass>) : RecyclerV
         holder.mOutputDateText.text = item.date
         holder.mOutputTitleText.text = item.title
         holder.mOutputContentText.text = item.content
+
+        //色変え
+        holder.mOutputDateText.setTextColor(item.colorFrag)
+        holder.mOutputTitleText.setTextColor(item.colorFrag)
+        holder.mOutputContentText.setTextColor(item.colorFrag)
+
+        holder.mOutputCard.setCardBackgroundColor(item.color)
         holder.mOutputCard.setOnLongClickListener {
 
             AlertDialog.Builder(activity)
