@@ -15,7 +15,7 @@ class Memo {
     @ColumnInfo(name = "content")
     var content: String? = null
 
-    @ColumnInfo(name = "backColor¬")
+    @ColumnInfo(name = "backColor")
     var color: Int = 0
 
     @ColumnInfo(name = "textColor")

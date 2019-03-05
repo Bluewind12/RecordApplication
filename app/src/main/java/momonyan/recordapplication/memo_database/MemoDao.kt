@@ -36,5 +36,9 @@ interface MemoDao {
     fun delete(memo: Memo)
 
     @Query("UPDATE memo SET `check` = :bool WHERE memoId = :id ")
-    fun updateMemo(id: Int, bool: Boolean)
+    fun updateMemoCheck(id: Int, bool: Boolean)
+
+    @Query("UPDATE memo SET content = :content , backColor = :color ,textColor = :textColor WHERE memoId = :id ")
+    fun updateMemoData(id: Int, content: String, color: Int, textColor: Int)
+
 }

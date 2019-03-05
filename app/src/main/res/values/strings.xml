@@ -12,7 +12,9 @@
 
     <!-- オプションメニュー -->
     <string name="dazeInputOption">日記入力</string>
+    <string name="dazeInputOptionChange">日記編集</string>
     <string name="memoInputOption">メモ入力</string>
+    <string name="memoInputOptionChange">メモ編集</string>
 
     <!-- 日記ページ -->
     <string name="title">題名</string>

@@ -10,7 +10,7 @@ import android.util.Log
 import com.facebook.stetho.Stetho
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.input_layout.*
+import kotlinx.android.synthetic.main.input_daze_layout.*
 import kotlinx.android.synthetic.main.picker_diarog_layout.view.*
 import momonyan.recordapplication.daze_database.AppDataBase
 import momonyan.recordapplication.daze_database.User
@@ -25,7 +25,7 @@ class InputActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.input_layout)
+        setContentView(R.layout.input_daze_layout)
 
         color = resources.getColor(R.color.darkText)
         darkLight = resources.getColor(R.color.lightText)

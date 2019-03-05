@@ -55,7 +55,6 @@ class MemoInputActivity : AppCompatActivity() {
             val intent = Intent(this, MainTabActivity::class.java)
             finish()
             startActivity(intent)
-
         }
         changeMemoBackButton.setOnClickListener {
 
