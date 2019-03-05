@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class InputActivity : AppCompatActivity() {
+class dazeInputActivity : AppCompatActivity() {
 
     private var color = 0xFFFFFF
     private var darkLight = 0xFFFFFF

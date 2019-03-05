@@ -21,7 +21,7 @@ class User {
     @ColumnInfo(name = "color")
     var color: Int = 0
 
-    @ColumnInfo(name = "Dark or Light")
+    @ColumnInfo(name = "textColor")
     var colorDL: Int = 0
 
 }

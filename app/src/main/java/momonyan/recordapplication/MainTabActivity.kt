@@ -1,8 +1,5 @@
 package momonyan.recordapplication
 
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.migration.Migration
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -11,7 +8,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.tab_main_layout.*
-import momonyan.recordapplication.daze_database.AppDataBase
 
 
 class MainTabActivity : AppCompatActivity() {
@@ -53,7 +49,7 @@ class MainTabActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.mainMenu1 -> {
-                startActivity(Intent(this, InputActivity::class.java))
+                startActivity(Intent(this, dazeInputActivity::class.java))
             }
             R.id.mainMenu2 ->{
                 startActivity(Intent(this, MemoInputActivity::class.java))

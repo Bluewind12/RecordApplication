@@ -23,6 +23,7 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
 
     private var color = 0xFFFFFF
     private var darkLight = 0xFFFFFF
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoHolder {
         //レイアウトの設定(inflate)
         val view = LayoutInflater.from(parent.context).inflate(R.layout.memo_card_layout, parent, false)
@@ -53,7 +54,7 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
             view.testMemoCardView.setCardBackgroundColor(holder.mMemoCardView.cardBackgroundColor)
             color = holder.mMemoCardView.cardBackgroundColor.defaultColor
             view.testMemoText.setTextColor(holder.mContentTextView.textColors)
-
+            darkLight = holder.mContentTextView.textColors.defaultColor
             view.changeMemoBackButton.setOnClickListener {
 
                 val view_picker = activity.layoutInflater.inflate(R.layout.picker_diarog_layout, null)
