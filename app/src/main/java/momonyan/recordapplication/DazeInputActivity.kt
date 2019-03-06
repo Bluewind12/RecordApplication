@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class dazeInputActivity : AppCompatActivity() {
+class DazeInputActivity : AppCompatActivity() {
 
     private var color = 0xFFFFFF
     private var darkLight = 0xFFFFFF
@@ -87,12 +87,12 @@ class dazeInputActivity : AppCompatActivity() {
 
                 testDazeCardView.setCardBackgroundColor(colorInt)
                 alert.dismiss()
-                if (red < 0xDD || blue < 0xDD || green < 0xDD) {
+                darkLight = if (red < 0xDD || blue < 0xDD || green < 0xDD) {
                     testDazeText.setTextColor(resources.getColor(R.color.darkText))
-                    darkLight = resources.getColor(R.color.darkText)
+                    resources.getColor(R.color.darkText)
                 } else {
                     testDazeText.setTextColor(resources.getColor(R.color.lightText))
-                    darkLight = resources.getColor(R.color.lightText)
+                    resources.getColor(R.color.lightText)
                 }
             }
         }

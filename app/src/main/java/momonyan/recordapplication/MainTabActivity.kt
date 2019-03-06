@@ -49,7 +49,7 @@ class MainTabActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.mainMenu1 -> {
-                startActivity(Intent(this, dazeInputActivity::class.java))
+                startActivity(Intent(this, DazeInputActivity::class.java))
             }
             R.id.mainMenu2 ->{
                 startActivity(Intent(this, MemoInputActivity::class.java))
