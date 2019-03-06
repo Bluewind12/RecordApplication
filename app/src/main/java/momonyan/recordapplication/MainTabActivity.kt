@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.tab_main_layout.*
@@ -40,7 +39,7 @@ class MainTabActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.main_menu_tab, menu)
 
         return true
     }
@@ -61,8 +60,6 @@ class MainTabActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         super.onPrepareOptionsMenu(menu)
-
-        Log.d("Debug", "$frag")
         // メニューアイテムを取得
         val menu0 = menu.findItem(R.id.mainMenu1) as MenuItem
         val menu1 = menu.findItem(R.id.mainMenu2) as MenuItem

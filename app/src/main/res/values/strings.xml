@@ -2,9 +2,9 @@
     <string name="app_name">RecordApplication</string>
 
     <!-- Tabの名前 -->
-    <string name="tab1Name">Tab1</string>
-    <string name="tab2Name">Tab2</string>
-    <string name="tab3Name">Tab3</string>
+    <string name="tab1Name">日記</string>
+    <string name="tab2Name">メモ</string>
+    <string name="tab3Name">その他</string>
 
     <!-- 入力画面 -->
     <string name="dazeInput">日記登録</string>

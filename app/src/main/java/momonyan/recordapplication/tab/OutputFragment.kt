@@ -75,9 +75,10 @@ class OutputFragment : Fragment() {
                         )
                         Log.d("TabDataSet", "Tab1:DataNum $i")
                     }
+                    //mDataListの逆順へ
+                    mDataList.reverse()
+
                 }
-                //mDataListの逆順へ
-                mDataList.reverse()
 
                 // Adapter作成
                 val adapter = OutputAdapter(mDataList)

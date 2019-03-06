@@ -10,4 +10,7 @@
     <color name="darkText">#FFFFFF</color>
     <color name="darkHintText">#004488</color>
 
+    <color name="tabBackGroundWhite">#FFFFFF</color>
+    <color name="tabBackGroundColor">#4455FF</color>
+
 </resources>

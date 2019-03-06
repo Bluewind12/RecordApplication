@@ -11,27 +11,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/tabLayout" app:layout_constraintHorizontal_bias="0.0"
-            app:tabSelectedTextColor="@color/colorPrimaryDark"
-            app:tabTextColor="@color/colorPrimary"
-            app:tabIndicatorColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:tabSelectedTextColor="@color/tabBackGroundWhite"
+            app:tabTextColor="@color/tabBackGroundColor"
+            app:tabIndicatorColor="@color/tabBackGroundColor"
+            app:layout_constraintBottom_toBottomOf="parent" app:tabBackground="@drawable/background_tab_color">
 
         <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab1Name"
-                android:id="@+id/tab_output"/>
+                android:id="@+id/tab_output" android:icon="@drawable/background_icon_tab1"/>
 
         <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab2Name"
-                android:id="@+id/tab_memo"/>
+                android:id="@+id/tab_memo" android:icon="@drawable/background_icon_tab2"/>
         <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab3Name"
-                android:id="@+id/tab_setting"/>
+                android:id="@+id/tab_setting" android:icon="@drawable/background_icon_tab3"/>
     </android.support.design.widget.TabLayout>
 
     <android.support.v4.view.ViewPager
