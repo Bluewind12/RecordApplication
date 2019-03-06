@@ -41,6 +41,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayout"/>
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout" android:background="@drawable/p0096_m"/>
 
 </android.support.constraint.ConstraintLayout>
