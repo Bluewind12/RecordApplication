@@ -57,6 +57,7 @@ class DazeInputActivity : AppCompatActivity() {
                 .subscribe()
 
             val intent = Intent(this, MainTabActivity::class.java)
+            intent.putExtra("Position", 0)
             finish()
             startActivity(intent)
 

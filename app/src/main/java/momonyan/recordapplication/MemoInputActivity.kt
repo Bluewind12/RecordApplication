@@ -53,6 +53,7 @@ class MemoInputActivity : AppCompatActivity() {
                 .subscribe()
 
             val intent = Intent(this, MainTabActivity::class.java)
+            intent.putExtra("Position", 1)
             finish()
             startActivity(intent)
         }

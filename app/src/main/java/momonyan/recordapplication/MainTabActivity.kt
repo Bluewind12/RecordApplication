@@ -15,13 +15,12 @@ class MainTabActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val tabPosition = intent.getIntExtra("Position", 0)
         setContentView(R.layout.tab_main_layout)
         mSectionsPagerAdapter = TabAdapter(supportFragmentManager)
         container.adapter = mSectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
         tabLayout.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
-
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 //Select時
@@ -35,7 +34,7 @@ class MainTabActivity : AppCompatActivity() {
 
             }
         })
-
+        tabLayout.getTabAt(tabPosition)?.select()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
