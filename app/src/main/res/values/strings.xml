@@ -29,4 +29,18 @@
     <string name="OKString">決定</string>
     <string name="backColorChange">背景カラー変更</string>
     <string name="testViewString">テスト表示です</string>
+
+    <!-- その他画面 -->
+    <string name="useReadMe">使い方について</string>
+    <string name="privacyPolicy">プライバシーポリシー</string>
+    <string name="hp">幻想乃桜工房のHP</string>
+    <string name="appsPage">幻想乃桜工房のアプリ</string>
+
+    <!-- URL -->
+    <string name="privacyPolicyURL">https://</string>
+    <string name="fantasyCherryBlossomURL">https://</string>
+    <string name="appsPageURL">https://</string>
+
+    <!-- AD -->
+
 </resources>

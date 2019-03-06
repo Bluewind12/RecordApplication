@@ -3,7 +3,7 @@ package momonyan.recordapplication
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import momonyan.recordapplication.tab.InputFragment
+import momonyan.recordapplication.tab.OtherFragment
 import momonyan.recordapplication.tab.MemoFragment
 import momonyan.recordapplication.tab.OutputFragment
 
@@ -13,7 +13,7 @@ class TabAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         when (position) {
             0 -> setFragment = OutputFragment()
             1 -> setFragment = MemoFragment()
-            2 -> setFragment = InputFragment()
+            2 -> setFragment = OtherFragment()
             else -> error("TabError")
         }
         return setFragment

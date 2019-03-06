@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+>
+
+    <Button
+            android:text="@string/privacyPolicy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/privacyPolicyButton"
+            app:layout_constraintHorizontal_bias="0.501"
+            android:layout_marginStart="32dp" android:layout_marginEnd="32dp" android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/homePageButton" android:background="@drawable/background_button"/>
+    <Button
+            android:text="@string/hp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/homePageButton"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:background="@drawable/background_button"/>
+    <Button
+            android:text="@string/appsPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/otherAppsButton" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/homePageButton" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" android:background="@drawable/background_button"/>
+</android.support.constraint.ConstraintLayout>
