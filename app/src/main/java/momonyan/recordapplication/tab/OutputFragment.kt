@@ -5,7 +5,6 @@ import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,10 +46,21 @@ class OutputFragment : Fragment() {
 
         var frag = true
         dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
+
+
+            // データの初期化
+            mDataList = arrayListOf() //まとめ
+
+            userIdsMutableList = mutableListOf() //Id
+            dateMutableList = mutableListOf() //日付
+            titleMutableList = mutableListOf() //題名
+            contentMutableList = mutableListOf() //内容
+            colorMutableList = mutableListOf() //背景
+            colorFragMutableList = mutableListOf() //テキストカラー
+
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
             if (users != null && frag) {
                 // TODO ユーザー一覧をRecyclerViewなどで表示
-                Log.d("TestTags","TestMan")
                 for (u in 0 until users.size) {
                     userIdsMutableList.add(users[u].userId)
                     dateMutableList.add(users[u].day!!)
@@ -59,26 +69,21 @@ class OutputFragment : Fragment() {
                     colorMutableList.add(users[u].color)
                     colorFragMutableList.add(users[u].colorDL)
                 }
-
-                // データ作成
-                if (mDataList.isEmpty()) {
-                    for (i in 0 until dateMutableList.size) {
-                        mDataList.add(
-                            OutputDataClass(
-                                userIdsMutableList[i],
-                                dateMutableList[i],
-                                titleMutableList[i],
-                                contentMutableList[i],
-                                colorMutableList[i],
-                                colorFragMutableList[i]
-                            )
+                for (i in 0 until dateMutableList.size) {
+                    mDataList.add(
+                        OutputDataClass(
+                            userIdsMutableList[i],
+                            dateMutableList[i],
+                            titleMutableList[i],
+                            contentMutableList[i],
+                            colorMutableList[i],
+                            colorFragMutableList[i]
                         )
-                        Log.d("TabDataSet", "Tab1:DataNum $i")
-                    }
-                    //mDataListの逆順へ
-                    mDataList.reverse()
-
+                    )
                 }
+                //mDataListの逆順へ
+                mDataList.reverse()
+
 
                 // Adapter作成
                 val adapter = OutputAdapter(mDataList)

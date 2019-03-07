@@ -49,6 +49,15 @@ class MemoFragment : Fragment() {
 
         dataBase.memoDao().getAll().observe(this, Observer<List<Memo>> { memos ->
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
+
+            // データ初期化
+            mDataList = arrayListOf()
+            idMutableList = mutableListOf()
+            booleanMutableList = mutableListOf()
+            contentMutableList = mutableListOf()
+            colorMutableList = mutableListOf()
+            textColorMutableList = mutableListOf()
+
             if (memos != null && frag) {
                 // TODO ユーザー一覧をRecyclerViewなどで表示
                 Log.d("TestTags", "TestMan!!!")
@@ -60,20 +69,16 @@ class MemoFragment : Fragment() {
                     textColorMutableList.add(memos[u].textColor)
                 }
 
-                // データ作成
-                if (mDataList.isEmpty()) {
-                    for (i in 0 until booleanMutableList.size) {
-                        mDataList.add(
-                            MemoDataClass(
-                                idMutableList[i],
-                                booleanMutableList[i],
-                                contentMutableList[i],
-                                colorMutableList[i],
-                                textColorMutableList[i]
-                            )
+                for (i in 0 until booleanMutableList.size) {
+                    mDataList.add(
+                        MemoDataClass(
+                            idMutableList[i],
+                            booleanMutableList[i],
+                            contentMutableList[i],
+                            colorMutableList[i],
+                            textColorMutableList[i]
                         )
-                        Log.d("TabDataSet", "Tab2:DataNum $i")
-                    }
+                    )
                 }
 
                 // Adapter作成
