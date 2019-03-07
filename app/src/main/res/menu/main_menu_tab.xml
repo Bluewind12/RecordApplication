@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/dazeInputOption" android:id="@+id/mainMenu1"/>
-    <item android:title="@string/memoInputOption" android:id="@+id/mainMenu2"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/dazeInputOption" android:id="@+id/mainMenu1"
+          android:icon="@drawable/icon_pen"
+          app:showAsAction="ifRoom"/>
+    <item android:title="@string/memoInputOption" android:id="@+id/mainMenu2"
+          android:icon="@drawable/icon_plus"
+          app:showAsAction="ifRoom"/>
 </menu>

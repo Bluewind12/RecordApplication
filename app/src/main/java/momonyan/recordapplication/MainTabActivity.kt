@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.tab_main_layout.*
 class MainTabActivity : AppCompatActivity() {
     private lateinit var mSectionsPagerAdapter: TabAdapter
     private var frag: Int = 0
-
+    private lateinit var menu0: MenuItem
+    private lateinit var menu1: MenuItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tabPosition = intent.getIntExtra("Position", 0)
@@ -25,6 +26,26 @@ class MainTabActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 //Select時
                 frag = tab.position
+                when (frag) {
+                    0 -> {
+                        // menu0を表示
+                        menu0.isVisible = true
+                        // menu1を非表示
+                        menu1.isVisible = false
+                    }
+                    1 -> {
+                        // menu0を非表示
+                        menu0.isVisible = false
+                        // menu1を表示
+                        menu1.isVisible = true
+                    }
+                    else -> {
+                        // menu0を非表示
+                        menu0.isVisible = false
+                        // menu1を表示
+                        menu1.isVisible = false
+                    }
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -40,6 +61,11 @@ class MainTabActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu_tab, menu)
 
+        // メニューアイテムを取得
+        menu0 = menu?.findItem(R.id.mainMenu1) as MenuItem
+        menu1 = menu.findItem(R.id.mainMenu2) as MenuItem
+
+        menu1.isVisible = false
         return true
     }
 
@@ -59,30 +85,7 @@ class MainTabActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         super.onPrepareOptionsMenu(menu)
-        // メニューアイテムを取得
-        val menu0 = menu.findItem(R.id.mainMenu1) as MenuItem
-        val menu1 = menu.findItem(R.id.mainMenu2) as MenuItem
 
-        when (frag) {
-            0 -> {
-                // menu0を表示
-                menu0.isVisible = true
-                // menu1を非表示
-                menu1.isVisible = false
-            }
-            1 -> {
-                // menu0を非表示
-                menu0.isVisible = false
-                // menu1を表示
-                menu1.isVisible = true
-            }
-            else -> {
-                // menu0を非表示
-                menu0.isVisible = false
-                // menu1を表示
-                menu1.isVisible = false
-            }
-        }
         return true
     }
 
