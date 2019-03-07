@@ -12,11 +12,12 @@ import kotlinx.android.synthetic.main.tab_main_layout.*
 class MainTabActivity : AppCompatActivity() {
     private lateinit var mSectionsPagerAdapter: TabAdapter
     private var frag: Int = 0
-    private lateinit var menu0: MenuItem
-    private lateinit var menu1: MenuItem
+    private var tabPosition: Int = 0
+    private var menu0: MenuItem? = null
+    private var menu1: MenuItem? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tabPosition = intent.getIntExtra("Position", 0)
+        tabPosition = intent.getIntExtra("Position", 0)
         setContentView(R.layout.tab_main_layout)
         mSectionsPagerAdapter = TabAdapter(supportFragmentManager)
         container.adapter = mSectionsPagerAdapter
@@ -29,21 +30,21 @@ class MainTabActivity : AppCompatActivity() {
                 when (frag) {
                     0 -> {
                         // menu0を表示
-                        menu0.isVisible = true
+                        menu0?.isVisible = true
                         // menu1を非表示
-                        menu1.isVisible = false
+                        menu1?.isVisible = false
                     }
                     1 -> {
                         // menu0を非表示
-                        menu0.isVisible = false
+                        menu0?.isVisible = false
                         // menu1を表示
-                        menu1.isVisible = true
+                        menu1?.isVisible = true
                     }
                     else -> {
                         // menu0を非表示
-                        menu0.isVisible = false
+                        menu0?.isVisible = false
                         // menu1を表示
-                        menu1.isVisible = false
+                        menu1?.isVisible = false
                     }
                 }
             }
@@ -63,9 +64,27 @@ class MainTabActivity : AppCompatActivity() {
 
         // メニューアイテムを取得
         menu0 = menu?.findItem(R.id.mainMenu1) as MenuItem
-        menu1 = menu.findItem(R.id.mainMenu2) as MenuItem
-
-        menu1.isVisible = false
+        menu1 = menu?.findItem(R.id.mainMenu2) as MenuItem
+        when (tabPosition) {
+            0 -> {
+                // menu0を表示
+                menu0?.isVisible = true
+                // menu1を非表示
+                menu1?.isVisible = false
+            }
+            1 -> {
+                // menu0を非表示
+                menu0?.isVisible = false
+                // menu1を表示
+                menu1?.isVisible = true
+            }
+            else -> {
+                // menu0を非表示
+                menu0?.isVisible = false
+                // menu1を表示
+                menu1?.isVisible = false
+            }
+        }
         return true
     }
 
