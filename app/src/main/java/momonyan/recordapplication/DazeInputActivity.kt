@@ -1,12 +1,14 @@
 package momonyan.recordapplication
 
 import android.arch.persistence.room.Room
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import com.facebook.stetho.Stetho
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
@@ -87,6 +89,14 @@ class DazeInputActivity : AppCompatActivity() {
                 Log.d("Color", "color:$color")
 
                 testDazeCardView.setCardBackgroundColor(colorInt)
+
+                //ソフトキーボードを非表示
+                if (view != null) {
+                    val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+                    view.clearFocus()
+                }
+
                 alert.dismiss()
                 darkLight = if (red < 0xDD || blue < 0xDD || green < 0xDD) {
                     testDazeText.setTextColor(resources.getColor(R.color.darkText))
