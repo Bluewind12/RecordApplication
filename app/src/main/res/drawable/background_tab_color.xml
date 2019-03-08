@@ -2,8 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
         <color android:color="@color/tabBackGroundColor"/>
+        <corners android:radius="12dp"/>
     </item>
     <item android:state_selected="false">
         <color android:color="@color/tabBackGroundWhite"/>
+        <corners android:radius="12dp"/>
     </item>
 </selector>

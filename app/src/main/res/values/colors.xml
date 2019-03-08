@@ -14,4 +14,6 @@
     <color name="tabBackGroundColor">#4455FF</color>
 
     <color name="cardViewColor">#EEDFF4FF</color>
+
+    <color name="textBar">#C6C6C6</color>
 </resources>
