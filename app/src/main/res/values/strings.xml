@@ -41,6 +41,9 @@
     <string name="privacyPolicyURL">https://</string>
     <string name="fantasyCherryBlossomURL">https://</string>
     <string name="appsPageURL">https://</string>
+    <string name="editString">編集</string>
+    <string name="deleteString">削除</string>
+    <string name="shareString">共有</string>
 
     <!-- AD -->
 
