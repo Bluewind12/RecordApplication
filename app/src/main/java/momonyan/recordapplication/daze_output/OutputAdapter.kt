@@ -43,6 +43,7 @@ class OutputAdapter(private val mValues: ArrayList<OutputDataClass>) : RecyclerV
             //データ
             detailIntent.putExtra("Id", item.id)
             detailIntent.putExtra("Title", item.title)
+            detailIntent.putExtra("Date", item.date)
             detailIntent.putExtra("Content", item.content)
             detailIntent.putExtra("BackColor", item.color)
             detailIntent.putExtra("TextColor", item.colorFrag)

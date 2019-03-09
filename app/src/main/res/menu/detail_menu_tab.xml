@@ -5,4 +5,6 @@
           />
     <item android:title="削除" android:id="@+id/detailMenu2"
           />
+    <item android:title="共有" android:id="@+id/detailMenu3"
+          />
 </menu>

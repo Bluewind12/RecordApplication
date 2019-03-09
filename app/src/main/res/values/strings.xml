@@ -20,6 +20,7 @@
     <string name="title">題名</string>
     <string name="contentString">内容</string>
 
+    <string name="shareFormat">%sの日記\n「%s」\n%s\n\n#幻想乃桜工房</string>
     <!-- Memoページ -->
     <string name="memoString">メモ</string>
 

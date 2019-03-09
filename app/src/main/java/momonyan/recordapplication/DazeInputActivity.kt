@@ -112,7 +112,7 @@ class DazeInputActivity : AppCompatActivity() {
 
     private fun getToday(): String {
         val date = Date()
-        val format = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
+        val format = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
         return format.format(date)
     }
 }

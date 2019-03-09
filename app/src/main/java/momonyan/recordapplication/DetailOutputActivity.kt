@@ -22,6 +22,7 @@ class DetailOutputActivity : AppCompatActivity() {
     private var id: Int = -1
     private var title: String = ""
     private var content: String = ""
+    private var date: String = ""
     private var backgroundColor: Int = -1
     private var textColor: Int = -1
 
@@ -39,6 +40,7 @@ class DetailOutputActivity : AppCompatActivity() {
         id = intent.getIntExtra("Id", -1)
         title = intent.getStringExtra("Title")
         content = intent.getStringExtra("Content")
+        date = intent.getStringExtra("Date")
         backgroundColor = intent.getIntExtra("BackColor", -1)
         textColor = intent.getIntExtra("TextColor", -1)
 
@@ -156,6 +158,14 @@ class DetailOutputActivity : AppCompatActivity() {
                     }
                     .setNegativeButton("Cancel", null)
                     .show()
+            }
+            R.id.detailMenu3 -> {
+                val shareStringData = getString(R.string.shareFormat, date, title, content)
+                val intent = Intent()
+                intent.action = Intent.ACTION_SEND
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, shareStringData)
+                startActivity(intent)
             }
             else -> error("対象外エラー１")
         }
