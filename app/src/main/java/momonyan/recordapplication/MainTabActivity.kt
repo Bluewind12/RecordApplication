@@ -102,10 +102,13 @@ class MainTabActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        super.onPrepareOptionsMenu(menu)
 
-        return true
+    override fun onActivityResult(requestCode: Int, resultCode: Int, code: Intent?) {
+        super.onActivityResult(requestCode, resultCode, code)
+        //更新
+        mSectionsPagerAdapter = TabAdapter(supportFragmentManager)
+        container.adapter = mSectionsPagerAdapter
+        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+        tabLayout.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
     }
-
 }

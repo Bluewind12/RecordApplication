@@ -19,6 +19,7 @@
 
         <activity android:name=".DazeInputActivity"/>
         <activity android:name=".MemoInputActivity"/>
+        <activity android:name=".DetailOutputActivity"/>
     </application>
 
 </manifest>
