@@ -24,4 +24,7 @@ class User {
     @ColumnInfo(name = "textColor")
     var colorDL: Int = 0
 
+    @ColumnInfo(name = "memo")
+    var memo: String = ""
+
 }

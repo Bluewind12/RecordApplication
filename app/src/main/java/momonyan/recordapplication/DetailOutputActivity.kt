@@ -48,7 +48,7 @@ class DetailOutputActivity : AppCompatActivity() {
         detailTitleText.setTextColor(textColor)
         detailContent.setTextColor(textColor)
         detailContentText.setTextColor(textColor)
-        detailsCardView.setCardBackgroundColor(backgroundColor)
+        detailCardView.setCardBackgroundColor(backgroundColor)
 
         //DB
         dataBase =
@@ -125,7 +125,7 @@ class DetailOutputActivity : AppCompatActivity() {
                     detailContentText.setTextColor(textColor)
 
                     //色変え
-                    detailsCardView.setCardBackgroundColor(backgroundColor)//背景
+                    detailCardView.setCardBackgroundColor(backgroundColor)//背景
                     Completable.fromAction {
                         dataBase.userDao().editDaze(id, changeTitle, changeContent, changeColor, changeTextColor)
                     }
@@ -165,6 +165,11 @@ class DetailOutputActivity : AppCompatActivity() {
         super.onDestroy()
         if (!deleteFrag) {
             //デリート出なかった場合の処理（メモの書き込み処理）
+            Completable.fromAction {
+                dataBase.userDao().editMemo(id, detailMemoText.text.toString())
+            }
+                .subscribeOn(Schedulers.io())
+                .subscribe()
         }
         setResult(Activity.RESULT_OK)
     }

@@ -17,12 +17,6 @@ import momonyan.recordapplication.daze_database.AppDataBase
 class OutputAdapter(private val mValues: ArrayList<OutputDataClass>) : RecyclerView.Adapter<OutputHolder>() {
     private lateinit var dataBase: AppDataBase
     private lateinit var activity: Activity
-
-    private var color: Int = 0
-    private var darkLight: Int = 0
-
-    private var editId: Int = -1
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OutputHolder {
         //レイアウトの設定(inflate)
         val view = LayoutInflater.from(parent.context).inflate(R.layout.output_card_layout, parent, false)

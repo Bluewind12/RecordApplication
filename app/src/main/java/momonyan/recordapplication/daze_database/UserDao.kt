@@ -42,9 +42,13 @@ interface UserDao {
     @Query("DELETE FROM user WHERE userId = :id")
     fun deleteId(id: Int)
 
-    // 条件でDelete
+    // 書き込み
     @Query("UPDATE user SET title = :title , content = :content ,color = :color, textColor = :textColor WHERE userId = :id ")
     fun editDaze(id: Int, title: String, content: String, color: Int, textColor: Int)
+
+    // 書き込み
+    @Query("UPDATE user SET memo = :changeMemo WHERE userId = :id ")
+    fun editMemo(id: Int, changeMemo: String)
 
 
 
