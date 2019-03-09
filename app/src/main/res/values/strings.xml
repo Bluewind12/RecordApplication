@@ -20,6 +20,10 @@
     <string name="title">題名</string>
     <string name="contentString">内容</string>
 
+    <string name="editString">編集</string>
+    <string name="deleteString">削除</string>
+    <string name="shareString">共有</string>
+
     <string name="shareFormat">%sの日記\n「%s」\n%s\n\n#日記 #幻想乃桜工房</string>
     <!-- Memoページ -->
     <string name="memoString">メモ</string>
@@ -39,11 +43,10 @@
 
     <!-- URL -->
     <string name="privacyPolicyURL">https://</string>
-    <string name="fantasyCherryBlossomURL">https://</string>
-    <string name="appsPageURL">https://</string>
-    <string name="editString">編集</string>
-    <string name="deleteString">削除</string>
-    <string name="shareString">共有</string>
+    <string name="fantasyCherryBlossomURL">https://www.gensounosakura.work/</string>
+    <string name="appsPageURL">
+        https://play.google.com/store/apps/developer?id=%E5%B9%BB%E6%83%B3%E4%B9%83%E6%A1%9C%E5%B7%A5%E6%88%BF
+    </string>
 
     <!-- AD -->
 
