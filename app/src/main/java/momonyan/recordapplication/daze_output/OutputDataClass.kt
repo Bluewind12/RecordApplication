@@ -6,6 +6,7 @@ class OutputDataClass(
     var title: String,
     var content: String,
     var color: Int,
-    var colorFrag: Int
+    var colorFrag: Int,
+    var memo: String
 ) {
 }

@@ -24,7 +24,8 @@ class OutputFragment : Fragment() {
     private var titleMutableList: MutableList<String> = mutableListOf()//題名
     private var contentMutableList: MutableList<String> = mutableListOf()//内容
     private var colorMutableList: MutableList<Int> = mutableListOf()//色
-    private var colorFragMutableList: MutableList<Int> = mutableListOf()//色の明るさのフラグ
+    private var colorFragMutableList: MutableList<Int> = mutableListOf()//TextColor
+    private var memoMutableList: MutableList<String> = mutableListOf()//Memo
 
     private var mDataList: ArrayList<OutputDataClass> = ArrayList()
 
@@ -57,6 +58,7 @@ class OutputFragment : Fragment() {
             contentMutableList = mutableListOf() //内容
             colorMutableList = mutableListOf() //背景
             colorFragMutableList = mutableListOf() //テキストカラー
+            memoMutableList = mutableListOf() //テキストカラー
 
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
             if (users != null && frag) {
@@ -68,6 +70,7 @@ class OutputFragment : Fragment() {
                     contentMutableList.add(users[u].content!!)
                     colorMutableList.add(users[u].color)
                     colorFragMutableList.add(users[u].colorDL)
+                    memoMutableList.add(users[u].memo)
                 }
                 for (i in 0 until dateMutableList.size) {
                     mDataList.add(
@@ -77,7 +80,8 @@ class OutputFragment : Fragment() {
                             titleMutableList[i],
                             contentMutableList[i],
                             colorMutableList[i],
-                            colorFragMutableList[i]
+                            colorFragMutableList[i],
+                            memoMutableList[i]
                         )
                     )
                 }

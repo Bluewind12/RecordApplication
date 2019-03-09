@@ -25,6 +25,8 @@ class DetailOutputActivity : AppCompatActivity() {
     private var backgroundColor: Int = -1
     private var textColor: Int = -1
 
+    private var memo: String = ""
+
     private var deleteFrag = false
 
     private lateinit var dataBase: AppDataBase
@@ -40,9 +42,12 @@ class DetailOutputActivity : AppCompatActivity() {
         backgroundColor = intent.getIntExtra("BackColor", -1)
         textColor = intent.getIntExtra("TextColor", -1)
 
+        memo = intent.getStringExtra("Memo")
+
         //レイアウト設置
         detailTitleText.text = title
         detailContentText.text = content
+        detailMemoText.setText(memo, TextView.BufferType.NORMAL)
         //色
         detailTitle.setTextColor(textColor)
         detailTitleText.setTextColor(textColor)
@@ -54,6 +59,7 @@ class DetailOutputActivity : AppCompatActivity() {
         dataBase =
             Room.databaseBuilder(applicationContext, AppDataBase::class.java, "TestDataBase.db")
                 .build()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

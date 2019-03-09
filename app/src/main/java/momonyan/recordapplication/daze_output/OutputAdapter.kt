@@ -46,6 +46,7 @@ class OutputAdapter(private val mValues: ArrayList<OutputDataClass>) : RecyclerV
             detailIntent.putExtra("Content", item.content)
             detailIntent.putExtra("BackColor", item.color)
             detailIntent.putExtra("TextColor", item.colorFrag)
+            detailIntent.putExtra("Memo", item.memo)
 
 
             activity.startActivityForResult(detailIntent, 0)
