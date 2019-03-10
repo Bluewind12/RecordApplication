@@ -4,21 +4,45 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.tab_main_layout.*
+import net.nend.android.NendAdInterstitial
+import net.nend.android.NendAdInterstitialVideo
+import java.util.*
 
 
 class MainTabActivity : AppCompatActivity() {
     private lateinit var mSectionsPagerAdapter: TabAdapter
     private var frag: Int = 0
     private var tabPosition: Int = 0
+
+    //menu
     private var menu0: MenuItem? = null
     private var menu1: MenuItem? = null
+    //nend
+    private lateinit var nendAdInterstitialVideo: NendAdInterstitialVideo
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        tabPosition = intent.getIntExtra("Position", 0)
         setContentView(R.layout.tab_main_layout)
+
+        //Nend
+        nendAdInterstitialVideo = NendAdInterstitialVideo(
+            this,
+            resources.getInteger(R.integer.ad_tab_movie_Id),
+            getString(R.string.ad_tab_movie_Key)
+        )
+        nendAdInterstitialVideo.loadAd()
+
+        NendAdInterstitial.loadAd(
+            applicationContext,
+            getString(R.string.ad_detail_pop_Key),
+            resources.getInteger(R.integer.ad_detail_pop_Id)
+        )
+
+        //Tab設定
         mSectionsPagerAdapter = TabAdapter(supportFragmentManager)
         container.adapter = mSectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
@@ -47,7 +71,14 @@ class MainTabActivity : AppCompatActivity() {
                         menu1?.isVisible = false
                     }
                 }
+                if (Random().nextInt(100) >= 75) {
+                    Log.d("Movie", "Play")
+                    if (nendAdInterstitialVideo.isLoaded) {
+                        nendAdInterstitialVideo.showAd(this@MainTabActivity)
+                    }
+                }
             }
+
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
             }
@@ -56,6 +87,8 @@ class MainTabActivity : AppCompatActivity() {
 
             }
         })
+        //Tab位置
+        tabPosition = intent.getIntExtra("Position", 0)
         tabLayout.getTabAt(tabPosition)?.select()
     }
 
@@ -105,6 +138,7 @@ class MainTabActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, code: Intent?) {
         super.onActivityResult(requestCode, resultCode, code)
+        NendAdInterstitial.showAd(this)
         //更新
         mSectionsPagerAdapter = TabAdapter(supportFragmentManager)
         container.adapter = mSectionsPagerAdapter
