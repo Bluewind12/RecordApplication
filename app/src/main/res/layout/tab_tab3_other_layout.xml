@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
+                                             xmlns:nendsdk="http://schemas.android.com/apk/res-auto"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
 >
@@ -12,25 +12,39 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/privacyPolicyButton"
-            app:layout_constraintHorizontal_bias="0.501"
-            android:layout_marginStart="32dp" android:layout_marginEnd="32dp" android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/homePageButton" android:background="@drawable/background_button"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="32dp" android:layout_marginEnd="32dp"
+            android:background="@drawable/background_button"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/homePageButton"/>
     <Button
             android:text="@string/hp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/homePageButton"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp" android:layout_marginTop="32dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:background="@drawable/background_button"/>
+            android:background="@drawable/background_button"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" app:layout_constraintTop_toBottomOf="@+id/privacyPolicyButton"
+            app:layout_constraintBottom_toTopOf="@+id/otherAppsButton" app:layout_constraintHorizontal_bias="0.5"/>
     <Button
             android:text="@string/appsPage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/otherAppsButton" android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/homePageButton" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/otherAppsButton"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="32dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp" android:background="@drawable/background_button"/>
+            android:layout_marginStart="32dp" android:background="@drawable/background_button"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toTopOf="@id/nend_other_100"
+            app:layout_constraintTop_toBottomOf="@+id/homePageButton"/>
+
+    <net.nend.android.NendAdView
+            android:id="@+id/nend_other_100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            nendsdk:NendApiKey="@string/ad_other_100_Key"
+            nendsdk:NendSpotId="@integer/ad_other_100_Id"
+            nendsdk:NendAdjustSize="true"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
 </android.support.constraint.ConstraintLayout>

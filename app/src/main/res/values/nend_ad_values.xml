@@ -2,25 +2,25 @@
 <resources>
     <!-- 日記画面    ５０ -->
     <string name="ad_daze_50_Key">c5cb8bc474345961c6e7a9778c947957ed8e1e4f</string>
-    <Int name="ad_daze_50_Id">3174</Int>
+    <integer name="ad_daze_50_Id">3174</integer>
 
     <!-- メモ画面    ５０ -->
     <string name="ad_memo_50_Key">c5cb8bc474345961c6e7a9778c947957ed8e1e4f</string>
-    <Int name="ad_memo_50_Id">3174</Int>
+    <integer name="ad_memo_50_Id">3174</integer>
 
     <!-- 詳細画面    ５０ -->
     <string name="ad_detail_50_Key">c5cb8bc474345961c6e7a9778c947957ed8e1e4f</string>
-    <Int name="ad_detail_50_Id">3174</Int>
+    <integer name="ad_detail_50_Id">3174</integer>
 
     <!-- その他画面  １００ -->
     <string name="ad_other_100_Key">8932b68d22d1d32f5d7251f9897a6aa64117995e</string>
-    <Int name="ad_other_100_Id">71000</Int>
+    <integer name="ad_other_100_Id">71000</integer>
 
     <!-- 詳細戻り  Pop -->
     <string name="ad_detail_pop_Key">8c278673ac6f676dae60a1f56d16dad122e23516</string>
-    <Int name="ad_detail_pop_Id">213206</Int>
+    <integer name="ad_detail_pop_Id">213206</integer>
 
     <!-- Tab移動  動画 -->
     <string name="ad_tab_movie_Key">e9527a2ac8d1f39a667dfe0f7c169513b090ad44</string>
-    <Int name="ad_tab_movie_Id">802559</Int>
+    <integer name="ad_tab_movie_Id">802559</integer>
 </resources>
