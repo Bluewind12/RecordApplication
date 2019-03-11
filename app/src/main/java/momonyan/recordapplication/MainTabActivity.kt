@@ -92,12 +92,12 @@ class MainTabActivity : AppCompatActivity() {
         tabLayout.getTabAt(tabPosition)?.select()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu_tab, menu)
 
         // メニューアイテムを取得
-        menu0 = menu?.findItem(R.id.mainMenu1) as MenuItem
-        menu1 = menu?.findItem(R.id.mainMenu2) as MenuItem
+        menu0 = menu.findItem(R.id.mainMenu1) as MenuItem
+        menu1 = menu.findItem(R.id.mainMenu2) as MenuItem
         when (tabPosition) {
             0 -> {
                 // menu0を表示
