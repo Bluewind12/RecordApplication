@@ -59,7 +59,6 @@ class MemoFragment : Fragment() {
             textColorMutableList = mutableListOf()
 
             if (memos != null && frag) {
-                // TODO ユーザー一覧をRecyclerViewなどで表示
                 Log.d("TestTags", "TestMan!!!")
                 for (u in 0 until memos.size) {
                     idMutableList.add(memos[u].memoId)

@@ -62,7 +62,6 @@ class OutputFragment : Fragment() {
 
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
             if (users != null && frag) {
-                // TODO ユーザー一覧をRecyclerViewなどで表示
                 for (u in 0 until users.size) {
                     userIdsMutableList.add(users[u].userId)
                     dateMutableList.add(users[u].day!!)
