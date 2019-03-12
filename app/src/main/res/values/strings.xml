@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">RecordApplication</string>
+    <!--Label-->
+    <string name="app_name">シンプル\n日記</string>
+    <string name="daze_mode">日記登録画面</string>
+    <string name="daze_edit_mode">日記編集画面</string>
+    <string name="memo_mode">メモ登録画面</string>
 
     <!-- Tabの名前 -->
     <string name="tab1Name">日記</string>

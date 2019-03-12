@@ -17,9 +17,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DazeInputActivity"/>
-        <activity android:name=".MemoInputActivity"/>
-        <activity android:name=".DetailOutputActivity"/>
+        <activity android:name=".DazeInputActivity"
+                  android:label="@string/daze_mode"/>
+        <activity android:name=".MemoInputActivity"
+                  android:label="@string/memo_mode"/>
+        <activity android:name=".DetailOutputActivity"
+                  android:label="@string/daze_edit_mode"/>
     </application>
 
 </manifest>
