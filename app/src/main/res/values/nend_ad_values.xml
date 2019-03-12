@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 日記画面    ５０ -->
-    <string name="ad_daze_50_Key">c5cb8bc474345961c6e7a9778c947957ed8e1e4f</string>
-    <integer name="ad_daze_50_Id">3174</integer>
+    <string name="ad_daze_50_Key">aec8fd49f1357da729969cdf7d2e308b389137a0</string>
+    <integer name="ad_daze_50_Id">944884</integer>
 
     <!-- メモ画面    ５０ -->
-    <string name="ad_memo_50_Key">c5cb8bc474345961c6e7a9778c947957ed8e1e4f</string>
-    <integer name="ad_memo_50_Id">3174</integer>
+    <string name="ad_memo_50_Key">0c87ec5674d3bebb5923088b193addedd2d35b73</string>
+    <integer name="ad_memo_50_Id">944885</integer>
 
     <!-- 詳細画面    ５０ -->
-    <string name="ad_detail_50_Key">c5cb8bc474345961c6e7a9778c947957ed8e1e4f</string>
-    <integer name="ad_detail_50_Id">3174</integer>
+    <string name="ad_detail_50_Key">c50b6d6d1bb8b8f3c23efcec195b7341fe1584bc</string>
+    <integer name="ad_detail_50_Id">944886</integer>
 
     <!-- その他画面  １００ -->
-    <string name="ad_other_100_Key">8932b68d22d1d32f5d7251f9897a6aa64117995e</string>
-    <integer name="ad_other_100_Id">71000</integer>
+    <string name="ad_other_100_Key">f909c49cd5dd8831fc11c8400d2a228cded2aaa8</string>
+    <integer name="ad_other_100_Id">944887</integer>
 
     <!-- 詳細戻り  Pop -->
-    <string name="ad_detail_pop_Key">8c278673ac6f676dae60a1f56d16dad122e23516</string>
-    <integer name="ad_detail_pop_Id">213206</integer>
+    <string name="ad_detail_pop_Key">a954932c394583764c13d1e552a00a8178647ca1</string>
+    <integer name="ad_detail_pop_Id">944888</integer>
 
     <!-- Tab移動  動画 -->
-    <string name="ad_tab_movie_Key">e9527a2ac8d1f39a667dfe0f7c169513b090ad44</string>
-    <integer name="ad_tab_movie_Id">802559</integer>
+    <string name="ad_tab_movie_Key">2bfc80bea8ed83e13cebb387ffec8d87b875a5c4</string>
+    <integer name="ad_tab_movie_Id">944889</integer>
 </resources>
