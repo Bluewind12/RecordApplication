@@ -1,7 +1,7 @@
 <resources>
     <!--Label-->
-    <string name="app_name">メモ付き\nシンプル日記</string>
-    <string name="app_name_label">シンプル日記</string>
+    <string name="app_name">メモ\n日記</string>
+    <string name="app_name_label">メモ付き日記！</string>
     <string name="daze_mode">日記登録画面</string>
     <string name="daze_edit_mode">日記編集画面</string>
     <string name="memo_mode">メモ登録画面</string>
@@ -47,7 +47,7 @@
     <string name="appsPage">幻想乃桜工房のアプリ</string>
 
     <!-- URL -->
-    <string name="privacyPolicyURL">https://</string>
+    <string name="privacyPolicyURL">https://www.gensounosakura.work/posts/5886855</string>
     <string name="fantasyCherryBlossomURL">https://www.gensounosakura.work/</string>
     <string name="appsPageURL">
         https://play.google.com/store/apps/developer?id=%E5%B9%BB%E6%83%B3%E4%B9%83%E6%A1%9C%E5%B7%A5%E6%88%BF
