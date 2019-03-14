@@ -37,25 +37,26 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
                         android:id="@+id/detailTitle" android:layout_marginTop="16dp"
-                        android:textSize="18sp" app:layout_constraintTop_toTopOf="parent"/>
+                        android:textSize="18sp" app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/detailTitleText" app:layout_constraintStart_toStartOf="@+id/detailTitle"
-                        android:layout_marginStart="16dp" android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toBottomOf="@+id/detailTitle" android:textSize="24sp" tools:text="題名"/>
+                        android:layout_marginStart="16dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/detailTitle" android:textSize="18sp" tools:text="題名"/>
                 <TextView
                         android:text="@string/contentString"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-                        android:id="@+id/detailContent" android:layout_marginTop="24dp"
-                        app:layout_constraintTop_toBottomOf="@+id/detailTitleText" android:textSize="18sp"/>
+                        android:id="@+id/detailContent" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/detailTitleText" android:textSize="18sp"
+                        android:textStyle="bold"/>
                 <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/detailContentText" app:layout_constraintStart_toStartOf="@+id/detailContent"
-                        android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                         app:layout_constraintTop_toBottomOf="@+id/detailContent"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginEnd="24dp" tools:text="内容の表示場所" android:textSize="18sp"
