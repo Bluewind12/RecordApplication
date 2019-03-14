@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.facebook.stetho.Stetho
 import kotlinx.android.synthetic.main.tab_tab1_output_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.daze_database.AppDataBase
@@ -31,14 +30,6 @@ class OutputFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewLayout = inflater.inflate(R.layout.tab_tab1_output_layout, container, false)
-
-        //Stetho
-        Stetho.initialize(
-            Stetho.newInitializerBuilder(context)
-                .enableDumpapp(Stetho.defaultDumperPluginsProvider(context))
-                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(context))
-                .build()
-        )
 
         //
         val dataBase =

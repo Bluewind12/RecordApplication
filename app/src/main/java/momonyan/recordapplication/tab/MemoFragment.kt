@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.facebook.stetho.Stetho
 import kotlinx.android.synthetic.main.tab_tab2_memo_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.memo.MemoAdapter
@@ -31,15 +30,6 @@ class MemoFragment : Fragment() {
     private lateinit var viewLayout: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewLayout = inflater.inflate(R.layout.tab_tab2_memo_layout, container, false)
-
-        //Stetho
-        Stetho.initialize(
-            Stetho.newInitializerBuilder(context)
-                .enableDumpapp(Stetho.defaultDumperPluginsProvider(context))
-                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(context))
-                .build()
-        )
-
         //
         val dataBase =
             Room.databaseBuilder(activity!!.applicationContext, AppMemoDataBase::class.java, "MemoDataBase.db")

@@ -8,7 +8,6 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.memo_card_layout.view.*
 
 class MemoHolder(mView: View) : RecyclerView.ViewHolder(mView) {
-    val mIdTextView: TextView = mView.memoIdTextView   //Id表示
     val mMemoCheck: CheckBox = mView.memoCheckBox   //check
     val mContentTextView: TextView = mView.memoContentView   //内容
 

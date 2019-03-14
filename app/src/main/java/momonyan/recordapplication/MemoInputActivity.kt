@@ -9,7 +9,6 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import com.facebook.stetho.Stetho
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.input_memo_layout.*
@@ -29,13 +28,6 @@ class MemoInputActivity : AppCompatActivity() {
         color = resources.getColor(R.color.darkText)
         darkLight = resources.getColor(R.color.lightText)
 
-        //Stetho
-        Stetho.initialize(
-            Stetho.newInitializerBuilder(this)
-                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                .build()
-        )
         //
         val dataBase =
             Room.databaseBuilder(applicationContext, AppMemoDataBase::class.java, "MemoDataBase.db")

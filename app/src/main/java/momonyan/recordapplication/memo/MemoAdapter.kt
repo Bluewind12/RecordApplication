@@ -33,12 +33,9 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
 
     override fun onBindViewHolder(holder: MemoHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdTextView.text = item.id.toString()
         holder.mMemoCheck.isChecked = item.check
         holder.mContentTextView.text = item.content
 
-
-        holder.mIdTextView.setTextColor(item.textColor)
         holder.mContentTextView.setTextColor(item.textColor)
 
         holder.mMemoCardView.setCardBackgroundColor(item.backColor)
@@ -93,7 +90,6 @@ class MemoAdapter(private val mValues: ArrayList<MemoDataClass>) : RecyclerView.
             view.memoButton.setOnClickListener {
                 holder.mContentTextView.text = view.memoInput.text.toString()
                 holder.mMemoCardView.setCardBackgroundColor(color)
-                holder.mIdTextView.setTextColor(darkLight)
                 holder.mContentTextView.setTextColor(darkLight)
 
                 val id = item.id
