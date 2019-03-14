@@ -1,6 +1,7 @@
 <resources>
     <!--Label-->
-    <string name="app_name">シンプル\n日記</string>
+    <string name="app_name">メモ付き\nシンプル日記</string>
+    <string name="app_name_label">シンプル日記</string>
     <string name="daze_mode">日記登録画面</string>
     <string name="daze_edit_mode">日記編集画面</string>
     <string name="memo_mode">メモ登録画面</string>
