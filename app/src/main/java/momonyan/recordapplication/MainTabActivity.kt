@@ -1,5 +1,9 @@
 package momonyan.recordapplication
 
+import android.app.AlarmManager
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -90,6 +94,11 @@ class MainTabActivity : AppCompatActivity() {
         //Tab位置
         tabPosition = intent.getIntExtra("Position", 0)
         tabLayout.getTabAt(tabPosition)?.select()
+
+        //通知
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancelAll()
+        setNotification()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -144,5 +153,22 @@ class MainTabActivity : AppCompatActivity() {
         container.adapter = mSectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
         tabLayout.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+    }
+
+
+    private fun setNotification() {
+        //呼び出す日時を設定する
+        val triggerTime = Calendar.getInstance()
+        triggerTime.add(Calendar.DATE, 7)    //今から5秒後
+
+        //設定した日時で発行するIntentを生成
+        val intent = Intent(this@MainTabActivity, Notice::class.java)
+        val sender = PendingIntent.getBroadcast(this@MainTabActivity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        //日時と発行するIntentをAlarmManagerにセットします
+        val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        manager.set(AlarmManager.RTC_WAKEUP, triggerTime.timeInMillis, sender)
+
+
     }
 }
