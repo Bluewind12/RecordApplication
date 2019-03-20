@@ -4,7 +4,10 @@ import android.arch.lifecycle.Observer
 import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +17,7 @@ import momonyan.recordapplication.daze_database.AppDataBase
 import momonyan.recordapplication.daze_database.User
 import momonyan.recordapplication.daze_output.OutputAdapter
 import momonyan.recordapplication.daze_output.OutputDataClass
+
 
 class OutputFragment : Fragment() {
     //表示用レイアウト
@@ -28,15 +32,20 @@ class OutputFragment : Fragment() {
 
     private var mDataList: ArrayList<OutputDataClass> = ArrayList()
 
+    private var maxCard = 10
+
+    private lateinit var dataBase: AppDataBase
+
+    private var position: Int = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewLayout = inflater.inflate(R.layout.tab_tab1_output_layout, container, false)
 
         //
-        val dataBase =
+        dataBase =
             Room.databaseBuilder(activity!!.applicationContext, AppDataBase::class.java, "TestDataBase.db")
                 .build()
 
-        var frag = true
         dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
 
 
@@ -52,7 +61,10 @@ class OutputFragment : Fragment() {
             memoMutableList = mutableListOf() //テキストカラー
 
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
-            if (users != null && frag) {
+            if (users != null) {
+                if (0 > users.size - maxCard) {
+                    maxCard = users.size
+                }
                 for (u in 0 until users.size) {
                     userIdsMutableList.add(users[u].userId)
                     dateMutableList.add(users[u].day!!)
@@ -62,7 +74,7 @@ class OutputFragment : Fragment() {
                     colorFragMutableList.add(users[u].colorDL)
                     memoMutableList.add(users[u].memo)
                 }
-                for (i in 0 until dateMutableList.size) {
+                for (i in users.size - 1 downTo users.size - maxCard) {
                     mDataList.add(
                         OutputDataClass(
                             userIdsMutableList[i],
@@ -75,10 +87,6 @@ class OutputFragment : Fragment() {
                         )
                     )
                 }
-                //mDataListの逆順へ
-                mDataList.reverse()
-
-
                 // Adapter作成
                 val adapter = OutputAdapter(mDataList)
                 adapter.isDataBase(dataBase)
@@ -87,13 +95,89 @@ class OutputFragment : Fragment() {
                 // RecyclerViewにAdapterとLayoutManagerの設定
                 viewLayout.tab1_recyclerView.adapter = adapter
                 viewLayout.tab1_recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                frag = false
+
+                //ページング処理
+                viewLayout.tab1_recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+
+                        val totalCount = recyclerView.adapter!!.itemCount //合計のアイテム数
+                        val childCount = recyclerView.childCount // RecyclerViewに表示されてるアイテム数
+                        val layoutManager = recyclerView.layoutManager
+
+                        if (layoutManager is GridLayoutManager) { // GridLayoutManager
+                            val gridLayoutManager = layoutManager as GridLayoutManager?
+                            val firstPosition =
+                                gridLayoutManager!!.findFirstVisibleItemPosition() // RecyclerViewに表示されている一番上のアイテムポジション
+                            if (totalCount == childCount + firstPosition) {
+                                // ページング処理
+                                // GridLayoutManagerを指定している時のページング処理
+                            }
+                        } else if (layoutManager is LinearLayoutManager) { // LinearLayoutManager
+                            val linearLayoutManager = layoutManager as LinearLayoutManager?
+                            val firstPosition =
+                                linearLayoutManager!!.findFirstVisibleItemPosition() // RecyclerViewの一番上に表示されているアイテムのポジション
+                            if (totalCount == childCount + firstPosition) {
+                                // ページング処理
+                                // LinearLayoutManagerを指定している時のページング処理
+                                if (maxCard != users.size) {
+                                    //保存
+                                    position =
+                                        (viewLayout.tab1_recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+
+                                    //追加更新
+                                    val lastInt = maxCard
+                                    maxCard += 10
+                                    loadRecycler(lastInt)
+
+                                }
+                            }
+                        }
+                    }
+                })
+
             }
         })
 
         //データセット
-
-
         return viewLayout
+    }
+
+    fun loadRecycler(last: Int) {
+        dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
+
+            // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
+            if (users != null) {
+                if (0 > users.size - maxCard) {
+                    maxCard = users.size
+                }
+                for (i in users.size - 1 - last downTo users.size - maxCard) {
+                    mDataList.add(
+                        OutputDataClass(
+                            userIdsMutableList[i],
+                            dateMutableList[i],
+                            titleMutableList[i],
+                            contentMutableList[i],
+                            colorMutableList[i],
+                            colorFragMutableList[i],
+                            memoMutableList[i]
+                        )
+                    )
+                }
+
+                // Adapter作成
+                val adapter = OutputAdapter(mDataList)
+                adapter.isDataBase(dataBase)
+                adapter.isActivity(activity!!)
+
+                // RecyclerViewにAdapterとLayoutManagerの設定
+                viewLayout.tab1_recyclerView.adapter = adapter
+                viewLayout.tab1_recyclerView.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+                //移動
+                (viewLayout.tab1_recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(position)
+            }
+        })
     }
 }
