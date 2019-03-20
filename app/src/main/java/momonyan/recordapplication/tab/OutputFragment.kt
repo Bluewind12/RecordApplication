@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -105,15 +104,7 @@ class OutputFragment : Fragment() {
                         val childCount = recyclerView.childCount // RecyclerViewに表示されてるアイテム数
                         val layoutManager = recyclerView.layoutManager
 
-                        if (layoutManager is GridLayoutManager) { // GridLayoutManager
-                            val gridLayoutManager = layoutManager as GridLayoutManager?
-                            val firstPosition =
-                                gridLayoutManager!!.findFirstVisibleItemPosition() // RecyclerViewに表示されている一番上のアイテムポジション
-                            if (totalCount == childCount + firstPosition) {
-                                // ページング処理
-                                // GridLayoutManagerを指定している時のページング処理
-                            }
-                        } else if (layoutManager is LinearLayoutManager) { // LinearLayoutManager
+                        if (layoutManager is LinearLayoutManager) { // LinearLayoutManager
                             val linearLayoutManager = layoutManager as LinearLayoutManager?
                             val firstPosition =
                                 linearLayoutManager!!.findFirstVisibleItemPosition() // RecyclerViewの一番上に表示されているアイテムのポジション
@@ -143,7 +134,7 @@ class OutputFragment : Fragment() {
         return viewLayout
     }
 
-    fun loadRecycler(last: Int) {
+    private fun loadRecycler(last: Int) {
         dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
 
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
