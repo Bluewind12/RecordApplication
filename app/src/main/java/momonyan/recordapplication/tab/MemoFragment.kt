@@ -28,7 +28,7 @@ class MemoFragment : Fragment() {
 
     private lateinit var dataBase: AppMemoDataBase
     private var position: Int = 0
-    private var maxCard = 10
+    private var maxCard = 20
     private var memoMax = 0
 
     private lateinit var viewLayout: View
@@ -108,7 +108,7 @@ class MemoFragment : Fragment() {
 
                                     //追加更新
                                     val lastInt = maxCard
-                                    maxCard += 10
+                                    maxCard += 20
                                     loadRecycler(lastInt)
 
                                 }
