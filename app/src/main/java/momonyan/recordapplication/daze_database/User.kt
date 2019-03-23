@@ -27,4 +27,7 @@ class User {
     @ColumnInfo(name = "memo")
     var memo: String = ""
 
+    @ColumnInfo(name = "tag")
+    var tag: String? = ""
+
 }

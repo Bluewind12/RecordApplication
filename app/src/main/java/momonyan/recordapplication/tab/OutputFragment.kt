@@ -1,7 +1,9 @@
 package momonyan.recordapplication.tab
 
 import android.arch.lifecycle.Observer
+import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Room
+import android.arch.persistence.room.migration.Migration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -9,12 +11,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.facebook.stetho.Stetho
 import kotlinx.android.synthetic.main.tab_tab1_output_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.daze_database.AppDataBase
 import momonyan.recordapplication.daze_database.User
 import momonyan.recordapplication.daze_output.OutputAdapter
 import momonyan.recordapplication.daze_output.OutputDataClass
+import java.util.*
 
 
 class OutputFragment : Fragment() {
@@ -38,10 +42,17 @@ class OutputFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewLayout = inflater.inflate(R.layout.tab_tab1_output_layout, container, false)
 
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE User ADD tag TEXT")
+            }
+        }
         //
         dataBase =
             Room.databaseBuilder(activity!!.applicationContext, AppDataBase::class.java, "TestDataBase.db")
+                .addMigrations(MIGRATION_1_2)
                 .build()
+
 
         dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
 
