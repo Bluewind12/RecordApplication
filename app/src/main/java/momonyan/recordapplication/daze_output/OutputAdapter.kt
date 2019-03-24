@@ -14,7 +14,7 @@ import momonyan.recordapplication.R
 import momonyan.recordapplication.daze_database.AppDataBase
 
 
-class OutputAdapter(private val mValues: ArrayList<OutputDataClass>) : RecyclerView.Adapter<OutputHolder>() {
+class OutputAdapter(var mValues: List<OutputDataClass>) : RecyclerView.Adapter<OutputHolder>() {
     private lateinit var dataBase: AppDataBase
     private lateinit var activity: Activity
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OutputHolder {
@@ -48,6 +48,7 @@ class OutputAdapter(private val mValues: ArrayList<OutputDataClass>) : RecyclerV
             detailIntent.putExtra("BackColor", item.color)
             detailIntent.putExtra("TextColor", item.colorFrag)
             detailIntent.putExtra("Memo", item.memo)
+            detailIntent.putExtra("Tag", item.tag)
 
 
             activity.startActivityForResult(detailIntent, 0)

@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.facebook.stetho.Stetho
 import kotlinx.android.synthetic.main.tab_tab1_output_layout.view.*
 import momonyan.recordapplication.R
 import momonyan.recordapplication.daze_database.AppDataBase
@@ -31,6 +33,7 @@ class OutputFragment : Fragment() {
     private var colorMutableList: MutableList<Int> = mutableListOf()//色
     private var colorFragMutableList: MutableList<Int> = mutableListOf()//TextColor
     private var memoMutableList: MutableList<String> = mutableListOf()//Memo
+    private var tagMutableList: MutableList<String> = mutableListOf()//Tag
 
     private var mDataList: ArrayList<OutputDataClass> = ArrayList()
 
@@ -38,6 +41,8 @@ class OutputFragment : Fragment() {
     private var position: Int = 0
     private var maxCard = 10
     private var maxUser = 0
+
+    private lateinit var adapter: OutputAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewLayout = inflater.inflate(R.layout.tab_tab1_output_layout, container, false)
@@ -67,6 +72,7 @@ class OutputFragment : Fragment() {
             colorMutableList = mutableListOf() //背景
             colorFragMutableList = mutableListOf() //テキストカラー
             memoMutableList = mutableListOf() //テキストカラー
+            tagMutableList = mutableListOf() //テキストカラー
 
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
             if (users != null) {
@@ -82,6 +88,7 @@ class OutputFragment : Fragment() {
                     colorMutableList.add(users[u].color)
                     colorFragMutableList.add(users[u].colorDL)
                     memoMutableList.add(users[u].memo)
+                    tagMutableList.add(users[u].tag!!)
                 }
                 for (i in users.size - 1 downTo users.size - maxCard) {
                     mDataList.add(
@@ -92,12 +99,13 @@ class OutputFragment : Fragment() {
                             contentMutableList[i],
                             colorMutableList[i],
                             colorFragMutableList[i],
-                            memoMutableList[i]
+                            memoMutableList[i],
+                            tagMutableList[i]
                         )
                     )
                 }
                 // Adapter作成
-                val adapter = OutputAdapter(mDataList)
+                adapter = OutputAdapter(mDataList)
                 adapter.isDataBase(dataBase)
                 adapter.isActivity(activity!!)
 
@@ -140,6 +148,28 @@ class OutputFragment : Fragment() {
             }
         })
 
+
+        viewLayout.outputSearchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                //テキスト変更前
+                Log.d("TextChange", "Before:$s")
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                //テキスト変更中
+                Log.d("TextChange", "NOW:$s")
+
+                val text = s.toString()
+                searchRequest(text)
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                Log.d("TextChange", "END:$s")
+
+                //テキスト変更後
+            }
+        })
+
         //データセット
         return viewLayout
     }
@@ -157,13 +187,14 @@ class OutputFragment : Fragment() {
                     contentMutableList[i],
                     colorMutableList[i],
                     colorFragMutableList[i],
-                    memoMutableList[i]
+                    memoMutableList[i],
+                    tagMutableList[i]
                 )
             )
         }
 
         // Adapter作成
-        val adapter = OutputAdapter(mDataList)
+        adapter = OutputAdapter(mDataList)
         adapter.isDataBase(dataBase)
         adapter.isActivity(activity!!)
         // RecyclerViewにAdapterとLayoutManagerの設定
@@ -172,5 +203,16 @@ class OutputFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         //移動
         (viewLayout.tab1_recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(position)
+
+    }
+
+    fun searchRequest(text: String) {
+        val adapter = adapter
+        val regex = Regex(".*$text.*")
+        adapter.mValues = mDataList.filter {
+            Log.d("TEXT_CHECK", "${it.title} : $text")
+            it.title.matches(regex) || it.content.matches(regex) || it.memo.matches(regex) || it.tag.matches(regex)
+        }
+        adapter.notifyDataSetChanged()
     }
 }
