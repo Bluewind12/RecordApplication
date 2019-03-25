@@ -14,6 +14,7 @@ import android.widget.TextView
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.details_output_layout.*
+import kotlinx.android.synthetic.main.input_daze_layout.*
 import kotlinx.android.synthetic.main.input_daze_layout.view.*
 import kotlinx.android.synthetic.main.picker_diarog_layout.view.*
 import momonyan.recordapplication.daze_database.AppDataBase
@@ -27,6 +28,7 @@ class DetailOutputActivity : AppCompatActivity() {
     private var textColor: Int = -1
 
     private var memo: String = ""
+    private var tag: String = ""
 
     private var deleteFrag = false
 
@@ -45,11 +47,20 @@ class DetailOutputActivity : AppCompatActivity() {
         textColor = intent.getIntExtra("TextColor", -1)
 
         memo = intent.getStringExtra("Memo")
+        tag = intent.getStringExtra("Tag")
 
         //レイアウト設置
         detailTitleText.text = title
         detailContentText.text = content
-        detailMemoText.setText(memo, TextView.BufferType.NORMAL)
+        dazeMemoTextView.text = memo
+
+        val tagList = tag.split(",")
+        tagList.forEach {
+            val textView = TextView(this)
+            textView.text = it
+            textView.background = getDrawable(R.drawable.background_tag_text)
+            tagLinearLayout.addView(textView)
+        }
         //色
         detailTitle.setTextColor(textColor)
         detailTitleText.setTextColor(textColor)
@@ -76,8 +87,10 @@ class DetailOutputActivity : AppCompatActivity() {
                 editDialogView.dazeInputTextView.text = getString(R.string.memoInputOptionChange)
 
                 //エディットテキストに挿入
-                editDialogView.titleInput.setText(title, TextView.BufferType.EDITABLE)  //題名
-                editDialogView.contentInput.setText(content, TextView.BufferType.EDITABLE)  //内容
+                editDialogView.titleInput.setText(title, TextView.BufferType.EDITABLE) //題名
+                editDialogView.contentInput.setText(content, TextView.BufferType.EDITABLE) //内容
+                editDialogView.dazeMemoEditText.setText(memo, TextView.BufferType.EDITABLE) //メモ
+                editDialogView.dazeTagEditText.setText(tag, TextView.BufferType.EDITABLE) //Tag
                 //色変更
                 editDialogView.testDazeText.setTextColor(textColor) //文字色
                 editDialogView.testDazeCardView.setCardBackgroundColor(backgroundColor) //背景
@@ -119,12 +132,26 @@ class DetailOutputActivity : AppCompatActivity() {
                 editDialogView.inputButton.setOnClickListener {
                     val changeTitle = editDialogView.titleInput.text.toString()
                     val changeContent = editDialogView.contentInput.text.toString()
+                    val changeMemo = editDialogView.dazeMemoEditText.text.toString()
+                    val changeTag = editDialogView.dazeTagEditText.text.toString()
                     val changeColor = backgroundColor
                     val changeTextColor = textColor
 
                     //内容変更
                     detailTitleText.text = changeTitle//題名
                     detailContentText.text = changeContent//内容
+                    dazeMemoTextView.text = changeMemo//Memo
+
+
+                    //Tag
+                    tagLinearLayout.removeAllViews()
+                    val tagList = changeTag.split(",")
+                    tagList.forEach {
+                        val textView = TextView(this)
+                        textView.text = it
+                        textView.background = getDrawable(R.drawable.background_tag_text)
+                        tagLinearLayout.addView(textView)
+                    }
 
                     //文字
                     detailTitle.setTextColor(textColor)
@@ -135,7 +162,15 @@ class DetailOutputActivity : AppCompatActivity() {
                     //色変え
                     detailCardView.setCardBackgroundColor(backgroundColor)//背景
                     Completable.fromAction {
-                        dataBase.userDao().editDaze(id, changeTitle, changeContent, changeColor, changeTextColor)
+                        dataBase.userDao().upDateDaze(
+                            id,
+                            changeTitle,
+                            changeContent,
+                            changeColor,
+                            changeTextColor,
+                            changeMemo,
+                            changeTag
+                        )
                     }
                         .subscribeOn(Schedulers.io())
                         .subscribe()
@@ -179,14 +214,6 @@ class DetailOutputActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (!deleteFrag) {
-            //デリート出なかった場合の処理（メモの書き込み処理）
-            Completable.fromAction {
-                dataBase.userDao().editMemo(id, detailMemoText.text.toString())
-            }
-                .subscribeOn(Schedulers.io())
-                .subscribe()
-        }
         setResult(Activity.RESULT_OK)
     }
 

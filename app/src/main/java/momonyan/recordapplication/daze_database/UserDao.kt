@@ -46,6 +46,11 @@ interface UserDao {
     @Query("UPDATE user SET title = :title , content = :content ,color = :color, textColor = :textColor WHERE userId = :id ")
     fun editDaze(id: Int, title: String, content: String, color: Int, textColor: Int)
 
+
+    // 書き込み
+    @Query("UPDATE user SET title = :title , content = :content ,color = :color, textColor = :textColor, memo = :memo, tag = :tag WHERE userId = :id ")
+    fun upDateDaze(id: Int, title: String, content: String, color: Int, textColor: Int, memo: String, tag: String)
+
     // 書き込み
     @Query("UPDATE user SET memo = :changeMemo WHERE userId = :id ")
     fun editMemo(id: Int, changeMemo: String)

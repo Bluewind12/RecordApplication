@@ -46,6 +46,8 @@ class DazeInputActivity : AppCompatActivity() {
             user.day = getToday()
             user.color = color
             user.colorDL = darkLight
+            user.memo = dazeMemoEditText.text.toString()
+            user.tag = dazeTagEditText.text.toString()
             Completable.fromAction { dataBase.userDao().insert(user) }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
