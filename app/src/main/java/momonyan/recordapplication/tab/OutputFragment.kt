@@ -7,8 +7,8 @@ import android.arch.persistence.room.migration.Migration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -76,10 +76,6 @@ class OutputFragment : Fragment() {
 
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
             if (users != null) {
-                maxUser = users.size
-                if (0 > users.size - maxCard) {
-                    maxCard = users.size
-                }
                 for (u in 0 until users.size) {
                     userIdsMutableList.add(users[u].userId)
                     dateMutableList.add(users[u].day!!)
@@ -88,9 +84,13 @@ class OutputFragment : Fragment() {
                     colorMutableList.add(users[u].color)
                     colorFragMutableList.add(users[u].colorDL)
                     memoMutableList.add(users[u].memo)
-                    tagMutableList.add(users[u].tag!!)
+                    if (users[u].tag != null) {
+                        tagMutableList.add(users[u].tag!!)
+                    } else {
+                        tagMutableList.add("")
+                    }
                 }
-                for (i in users.size - 1 downTo users.size - maxCard) {
+                for (i in 0 until users.size) {
                     mDataList.add(
                         OutputDataClass(
                             userIdsMutableList[i],
@@ -104,6 +104,7 @@ class OutputFragment : Fragment() {
                         )
                     )
                 }
+                mDataList.reverse()
                 // Adapter作成
                 adapter = OutputAdapter(mDataList)
                 adapter.isDataBase(dataBase)
@@ -113,41 +114,8 @@ class OutputFragment : Fragment() {
                 viewLayout.tab1_recyclerView.adapter = adapter
                 viewLayout.tab1_recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-                //ページング処理
-                viewLayout.tab1_recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-
-                        val totalCount = recyclerView.adapter!!.itemCount //合計のアイテム数
-                        val childCount = recyclerView.childCount // RecyclerViewに表示されてるアイテム数
-                        val layoutManager = recyclerView.layoutManager
-
-                        if (layoutManager is LinearLayoutManager) { // LinearLayoutManager
-                            val linearLayoutManager = layoutManager as LinearLayoutManager?
-                            val firstPosition =
-                                linearLayoutManager!!.findFirstVisibleItemPosition() // RecyclerViewの一番上に表示されているアイテムのポジション
-                            if (totalCount == childCount + firstPosition) {
-                                // ページング処理
-                                // LinearLayoutManagerを指定している時のページング処理
-                                if (maxCard != users.size) {
-                                    //保存
-                                    position =
-                                        (viewLayout.tab1_recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-
-                                    //追加更新
-                                    val lastInt = maxCard
-                                    maxCard += 10
-                                    loadRecycler(lastInt)
-
-                                }
-                            }
-                        }
-                    }
-                })
-
             }
         })
-
 
         viewLayout.outputSearchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -174,44 +142,11 @@ class OutputFragment : Fragment() {
         return viewLayout
     }
 
-    private fun loadRecycler(last: Int) {
-        if (0 > maxUser - maxCard) {
-            maxCard = maxUser
-        }
-        for (i in maxUser - 1 - last downTo maxUser - maxCard) {
-            mDataList.add(
-                OutputDataClass(
-                    userIdsMutableList[i],
-                    dateMutableList[i],
-                    titleMutableList[i],
-                    contentMutableList[i],
-                    colorMutableList[i],
-                    colorFragMutableList[i],
-                    memoMutableList[i],
-                    tagMutableList[i]
-                )
-            )
-        }
-
-        // Adapter作成
-        adapter = OutputAdapter(mDataList)
-        adapter.isDataBase(dataBase)
-        adapter.isActivity(activity!!)
-        // RecyclerViewにAdapterとLayoutManagerの設定
-        viewLayout.tab1_recyclerView.adapter = adapter
-        viewLayout.tab1_recyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        //移動
-        (viewLayout.tab1_recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(position)
-
-    }
 
     fun searchRequest(text: String) {
         val adapter = adapter
-        val regex = Regex(".*$text.*")
         adapter.mValues = mDataList.filter {
-            Log.d("TEXT_CHECK", "${it.title} : $text")
-            it.title.matches(regex) || it.content.matches(regex) || it.memo.matches(regex) || it.tag.matches(regex)
+            it.title.contains(text) || it.content.contains(text) || it.memo.contains(text) || it.tag.contains(text)
         }
         adapter.notifyDataSetChanged()
     }
