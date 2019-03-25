@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
-import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,9 +37,6 @@ class OutputFragment : Fragment() {
     private var mDataList: ArrayList<OutputDataClass> = ArrayList()
 
     private lateinit var dataBase: AppDataBase
-    private var position: Int = 0
-    private var maxCard = 10
-    private var maxUser = 0
 
     private lateinit var adapter: OutputAdapter
 

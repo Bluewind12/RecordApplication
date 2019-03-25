@@ -5,7 +5,6 @@ import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,9 +26,6 @@ class MemoFragment : Fragment() {
     private var textColorMutableList: MutableList<Int> = mutableListOf()//文字
 
     private lateinit var dataBase: AppMemoDataBase
-    private var position: Int = 0
-    private var maxCard = 20
-    private var memoMax = 0
 
     private lateinit var viewLayout: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -51,10 +47,6 @@ class MemoFragment : Fragment() {
             textColorMutableList = mutableListOf()
 
             if (memos != null) {
-                memoMax = memos.size
-                if (0 > memoMax - maxCard) {
-                    maxCard = memos.size
-                }
                 for (u in 0 until memos.size) {
                     idMutableList.add(memos[u].memoId)
                     booleanMutableList.add(memos[u].check!!)
@@ -63,7 +55,7 @@ class MemoFragment : Fragment() {
                     textColorMutableList.add(memos[u].textColor)
                 }
 
-                for (i in memoMax - 1 downTo memoMax - maxCard) {
+                for (i in 0 until memos.size) {
                     mDataList.add(
                         MemoDataClass(
                             idMutableList[i],
@@ -75,6 +67,8 @@ class MemoFragment : Fragment() {
                     )
                 }
 
+                mDataList.reverse()
+
                 // Adapter作成
                 val adapter = MemoAdapter(mDataList)
                 adapter.isDataBase(dataBase)
@@ -85,38 +79,6 @@ class MemoFragment : Fragment() {
                 viewLayout.tab2_recyclerView.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-                //ページング処理
-                viewLayout.tab2_recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-
-                        val totalCount = recyclerView.adapter!!.itemCount //合計のアイテム数
-                        val childCount = recyclerView.childCount // RecyclerViewに表示されてるアイテム数
-                        val layoutManager = recyclerView.layoutManager
-
-                        if (layoutManager is LinearLayoutManager) { // LinearLayoutManager
-                            val linearLayoutManager = layoutManager as LinearLayoutManager?
-                            val firstPosition =
-                                linearLayoutManager!!.findFirstVisibleItemPosition() // RecyclerViewの一番上に表示されているアイテムのポジション
-                            if (totalCount == childCount + firstPosition) {
-                                // ページング処理
-                                // LinearLayoutManagerを指定している時のページング処理
-                                if (maxCard != memos.size) {
-                                    //保存
-                                    position =
-                                        (viewLayout.tab2_recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-
-                                    //追加更新
-                                    val lastInt = maxCard
-                                    maxCard += 20
-                                    loadRecycler(lastInt)
-
-                                }
-                            }
-                        }
-                    }
-                })
-
             }
         })
 
@@ -124,33 +86,4 @@ class MemoFragment : Fragment() {
         return viewLayout
     }
 
-    private fun loadRecycler(last: Int) {
-        if (0 > memoMax - maxCard) {
-            maxCard = memoMax
-        }
-
-        for (i in memoMax - 1 - last downTo memoMax - maxCard) {
-            mDataList.add(
-                MemoDataClass(
-                    idMutableList[i],
-                    booleanMutableList[i],
-                    contentMutableList[i],
-                    colorMutableList[i],
-                    textColorMutableList[i]
-                )
-            )
-        }
-        // Adapter作成
-        val adapter = MemoAdapter(mDataList)
-        adapter.isDataBase(dataBase)
-        adapter.isActivity(activity!!)
-
-        // RecyclerViewにAdapterとLayoutManagerの設定
-        viewLayout.tab2_recyclerView.adapter = adapter
-        viewLayout.tab2_recyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
-        //移動
-        (viewLayout.tab2_recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(position)
-    }
 }
