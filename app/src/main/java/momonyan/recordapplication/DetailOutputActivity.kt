@@ -14,7 +14,6 @@ import android.widget.TextView
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.details_output_layout.*
-import kotlinx.android.synthetic.main.input_daze_layout.*
 import kotlinx.android.synthetic.main.input_daze_layout.view.*
 import kotlinx.android.synthetic.main.picker_diarog_layout.view.*
 import momonyan.recordapplication.daze_database.AppDataBase
@@ -56,10 +55,15 @@ class DetailOutputActivity : AppCompatActivity() {
 
         val tagList = tag.split(",")
         tagList.forEach {
-            val textView = TextView(this)
-            textView.text = it
-            textView.background = getDrawable(R.drawable.background_tag_text)
-            tagLinearLayout.addView(textView)
+            if (it != "") {
+                val textView = TextView(this)
+                textView.text = it
+                textView.background = getDrawable(R.drawable.background_tag_text)
+                tagLinearLayout.addView(textView)
+                val pattingText = TextView(this)
+                pattingText.text = " "
+                tagLinearLayout.addView(pattingText)
+            }
         }
         //色
         detailTitle.setTextColor(textColor)
@@ -147,12 +151,16 @@ class DetailOutputActivity : AppCompatActivity() {
                     tagLinearLayout.removeAllViews()
                     val tagList = changeTag.split(",")
                     tagList.forEach {
-                        val textView = TextView(this)
-                        textView.text = it
-                        textView.background = getDrawable(R.drawable.background_tag_text)
-                        tagLinearLayout.addView(textView)
+                        if (it != "") {
+                            val textView = TextView(this)
+                            textView.text = it
+                            textView.background = getDrawable(R.drawable.background_tag_text)
+                            tagLinearLayout.addView(textView)
+                            val pattingText = TextView(this)
+                            pattingText.text = " "
+                            tagLinearLayout.addView(pattingText)
+                        }
                     }
-
                     //文字
                     detailTitle.setTextColor(textColor)
                     detailTitleText.setTextColor(textColor)

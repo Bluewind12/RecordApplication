@@ -47,6 +47,10 @@ class OutputAdapter(var mValues: List<OutputDataClass>) : RecyclerView.Adapter<O
                 textView.text = it
                 textView.background = activity.getDrawable(R.drawable.background_tag_text)
                 holder.mOutputLinearLayout.addView(textView)
+
+                val pattingText = TextView(activity)
+                pattingText.text = " "
+                holder.mOutputLinearLayout.addView(pattingText)
             }
         }
 
