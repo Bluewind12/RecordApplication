@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
 import momonyan.recordapplication.DetailOutputActivity
@@ -36,6 +37,19 @@ class OutputAdapter(var mValues: List<OutputDataClass>) : RecyclerView.Adapter<O
         holder.mOutputContentText.setTextColor(item.colorFrag)
 
         holder.mOutputCard.setCardBackgroundColor(item.color)
+
+        //Tag
+        holder.mOutputLinearLayout.removeAllViews()
+        val tagList = item.tag.split(",")
+        tagList.forEach {
+            if (it != "") {
+                val textView = TextView(activity)
+                textView.text = it
+                textView.background = activity.getDrawable(R.drawable.background_tag_text)
+                holder.mOutputLinearLayout.addView(textView)
+            }
+        }
+
         //クリック
         holder.mOutputCard.setOnClickListener {
             val detailIntent = Intent(activity, DetailOutputActivity::class.java)
