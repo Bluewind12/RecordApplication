@@ -48,6 +48,7 @@ class MemoInputActivity : AppCompatActivity() {
 
             val intent = Intent(this, MainTabActivity::class.java)
             intent.putExtra("Position", 1)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finish()
             startActivity(intent)
         }
