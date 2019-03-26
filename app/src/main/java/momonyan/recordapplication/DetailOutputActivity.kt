@@ -58,7 +58,7 @@ class DetailOutputActivity : AppCompatActivity() {
             if (it != "") {
                 val textView = TextView(this)
                 textView.text = it
-                textView.background = getDrawable(R.drawable.background_tag_text)
+                textView.background = getDrawable(R.drawable.background_tag_text_light)
                 tagLinearLayout.addView(textView)
                 val pattingText = TextView(this)
                 pattingText.text = " "
@@ -154,7 +154,14 @@ class DetailOutputActivity : AppCompatActivity() {
                         if (it != "") {
                             val textView = TextView(this)
                             textView.text = it
-                            textView.background = getDrawable(R.drawable.background_tag_text)
+                            textView.setTextColor(changeTextColor)
+                            if (changeTextColor == R.color.lightText) {
+                                //白ベース
+                                textView.background = getDrawable(R.drawable.background_tag_text_light)
+                            } else {
+                                //黒ベース
+                                textView.background = getDrawable(R.drawable.background_tag_text_dark)
+                            }
                             tagLinearLayout.addView(textView)
                             val pattingText = TextView(this)
                             pattingText.text = " "

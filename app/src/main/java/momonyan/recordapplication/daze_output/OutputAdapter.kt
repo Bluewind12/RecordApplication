@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +46,15 @@ class OutputAdapter(var mValues: List<OutputDataClass>) : RecyclerView.Adapter<O
             if (it != "") {
                 val textView = TextView(activity)
                 textView.text = it
-                textView.background = activity.getDrawable(R.drawable.background_tag_text)
+                textView.setTextColor(item.colorFrag)
+                Log.d("COLOR", "item:${item.colorFrag} - R:${R.color.lightText}")
+                if (item.colorFrag != -1) {
+                    //白ベース
+                    textView.background = activity.getDrawable(R.drawable.background_tag_text_light)
+                } else {
+                    //黒ベース
+                    textView.background = activity.getDrawable(R.drawable.background_tag_text_dark)
+                }
                 holder.mOutputLinearLayout.addView(textView)
 
                 val pattingText = TextView(activity)
