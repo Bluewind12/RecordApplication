@@ -159,7 +159,7 @@ class MainTabActivity : AppCompatActivity() {
     private fun setNotification() {
         //呼び出す日時を設定する
         val triggerTime = Calendar.getInstance()
-        triggerTime.add(Calendar.DATE, 7)    //今から5秒後
+        triggerTime.add(Calendar.DATE, 7)
 
         //設定した日時で発行するIntentを生成
         val intent = Intent(this@MainTabActivity, Notice::class.java)
