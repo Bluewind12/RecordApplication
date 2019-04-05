@@ -54,6 +54,20 @@
     </string>
     <string name="search">検索</string>
 
-    <!-- AD -->
+    <!-- レビュー誘導 -->
+    <string name="rate_dialog_title">レビューをお願いします！</string>
+    <!-- 初期 -->
+    <string name="rate_dialog_message">このアプリはどうですか？</string>
+    <string name="rate_dialog_ok">使いやすい</string>
+    <string name="rate_dialog_no">そうでもない</string>
+    <!-- Store -->
+    <string name="rate_dialog_store_message">よろしければレビューをお願いします！</string>
+    <string name="rate_dialog_store_ok">OK！</string>
+    <string name="rate_dialog_store_no">また今度</string>
+    <!-- Mail -->
+    <string name="rate_dialog_mail_message">改善点・意見を送りますか？</string>
+    <string name="rate_dialog_mail_ok">はい</string>
+    <string name="rate_dialog_mail_no">また今度</string>
+
 
 </resources>
