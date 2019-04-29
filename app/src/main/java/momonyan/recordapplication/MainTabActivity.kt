@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import jp.co.runners.rateorfeedback.RateOrFeedback
 import kotlinx.android.synthetic.main.tab_main_layout.*
 import net.nend.android.NendAdInterstitial
 import net.nend.android.NendAdInterstitialVideo
@@ -99,6 +100,8 @@ class MainTabActivity : AppCompatActivity() {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.cancelAll()
         setNotification()
+
+        viewReview()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -168,7 +171,21 @@ class MainTabActivity : AppCompatActivity() {
         //日時と発行するIntentをAlarmManagerにセットします
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         manager.set(AlarmManager.RTC_WAKEUP, triggerTime.timeInMillis, sender)
+    }
 
-
+    private fun viewReview() {
+        RateOrFeedback(this)
+            // レビュー用ストアURL
+            .setPlayStoreUrl(getString(R.string.reviewUrl))
+            // 改善点・要望の送信先メールアドレス
+            .setFeedbackEmail(getString(R.string.reviewMail))
+            // 一度、評価するか改善点を送信するを選択した場合、それ以降はダイアログが表示されません。
+            // この値をインクリメントすることで再度ダイアログが表示されるようになります。
+            .setReviewRequestId(0)
+            // 前回ダイアログを表示してから次にダイアログを表示してよいタイミングまでの期間です。
+            .setIntervalFromPreviousShowing(60 * 60 * 3)//3時間
+            // アプリをインストールしてから、ここで指定された期間はダイアログを表示しません。
+            .setNotShowTermSecondsFromInstall(60 * 60)//1時間
+            .showIfNeeds()
     }
 }

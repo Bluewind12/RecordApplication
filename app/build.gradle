@@ -72,4 +72,7 @@ dependencies {
 
     //nend
     implementation 'net.nend.android:nend-sdk:5.1.0'
+
+    //レビュー
+    implementation 'jp.co.runners:rateorfeedback:0.0.3'
 }

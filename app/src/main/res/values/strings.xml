@@ -69,5 +69,7 @@
     <string name="rate_dialog_mail_ok">はい</string>
     <string name="rate_dialog_mail_no">また今度</string>
 
+    <string name="reviewUrl">market://details?id=momonyan.recordapplication</string>
+    <string name="reviewMail">gensounosakurakikimimi@gmail.com</string>
 
 </resources>
