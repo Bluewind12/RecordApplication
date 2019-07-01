@@ -31,6 +31,10 @@ interface MemoDao {
     @Query("DELETE FROM memo WHERE memoId = :id")
     fun deleteId(id: Int)
 
+    @Query("DELETE FROM memo WHERE check = :check")
+    fun deleteCheck(check: Boolean)
+
+
     // データモデルのクラスを引数に渡すことで、データの削除ができる。主キーでデータを検索して削除する場合。
     @Delete
     fun delete(memo: Memo)

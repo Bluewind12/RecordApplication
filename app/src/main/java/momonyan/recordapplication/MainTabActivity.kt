@@ -26,6 +26,7 @@ class MainTabActivity : AppCompatActivity() {
     //menu
     private var menu0: MenuItem? = null
     private var menu1: MenuItem? = null
+    private var menu2: MenuItem? = null
     //nend
     private lateinit var nendAdInterstitialVideo: NendAdInterstitialVideo
 
@@ -62,18 +63,21 @@ class MainTabActivity : AppCompatActivity() {
                         menu0?.isVisible = true
                         // menu1を非表示
                         menu1?.isVisible = false
+                        menu2?.isVisible = false
                     }
                     1 -> {
                         // menu0を非表示
                         menu0?.isVisible = false
                         // menu1を表示
                         menu1?.isVisible = true
+                        menu2?.isVisible = true
                     }
                     else -> {
                         // menu0を非表示
                         menu0?.isVisible = false
                         // menu1を表示
                         menu1?.isVisible = false
+                        menu2?.isVisible = false
                     }
                 }
                 if (Random().nextInt(100) >= 75) {
@@ -110,24 +114,28 @@ class MainTabActivity : AppCompatActivity() {
         // メニューアイテムを取得
         menu0 = menu.findItem(R.id.mainMenu1) as MenuItem
         menu1 = menu.findItem(R.id.mainMenu2) as MenuItem
+        menu2 = menu.findItem(R.id.mainMenu3) as MenuItem
         when (tabPosition) {
             0 -> {
                 // menu0を表示
                 menu0?.isVisible = true
                 // menu1を非表示
                 menu1?.isVisible = false
+                menu2?.isVisible = false
             }
             1 -> {
                 // menu0を非表示
                 menu0?.isVisible = false
                 // menu1を表示
                 menu1?.isVisible = true
+                menu2?.isVisible = true
             }
             else -> {
                 // menu0を非表示
                 menu0?.isVisible = false
                 // menu1を表示
                 menu1?.isVisible = false
+                menu2?.isVisible = false
             }
         }
         return true
@@ -141,6 +149,10 @@ class MainTabActivity : AppCompatActivity() {
             }
             R.id.mainMenu2 ->{
                 startActivity(Intent(this, MemoInputActivity::class.java))
+            }
+            R.id.mainMenu3 ->{
+                //TODOここで全消しダイアログ
+
             }
             else -> error("対象外エラー１")
         }
