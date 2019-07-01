@@ -9,5 +9,4 @@ class OutputDataClass(
     var colorFrag: Int,
     var memo: String,
     var tag:String
-) {
-}
+)
