@@ -71,5 +71,6 @@
 
     <string name="reviewUrl">market://details?id=momonyan.recordapplication</string>
     <string name="reviewMail">gensounosakurakikimimi@gmail.com</string>
+    <string name="check_all_delete">チェックあり全削除</string>
 
 </resources>

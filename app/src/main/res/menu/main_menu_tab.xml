@@ -7,4 +7,7 @@
     <item android:title="@string/memoInputOption" android:id="@+id/mainMenu2"
           android:icon="@drawable/icon_plus"
           app:showAsAction="ifRoom"/>
+    <item android:title="@string/check_all_delete" android:id="@+id/mainMenu3"
+          android:icon="@drawable/icon_trash"
+          app:showAsAction="ifRoom"/>
 </menu>
