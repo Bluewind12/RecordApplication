@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,10 @@ class MemoFragment : Fragment() {
 
     private lateinit var dataBase: AppMemoDataBase
 
+    private lateinit var adapter:MemoAdapter
+
     private lateinit var viewLayout: View
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewLayout = inflater.inflate(R.layout.tab_tab2_memo_layout, container, false)
         //
@@ -70,7 +74,7 @@ class MemoFragment : Fragment() {
                 mDataList.reverse()
 
                 // Adapter作成
-                val adapter = MemoAdapter(mDataList)
+                adapter = MemoAdapter(mDataList)
                 adapter.isDataBase(dataBase)
                 adapter.isActivity(activity!!)
 
@@ -86,4 +90,54 @@ class MemoFragment : Fragment() {
         return viewLayout
     }
 
+
+    fun reloadDataBase(){
+        Log.d("TESMA","MEMOAS")
+        dataBase.memoDao().getAll().observe(this, Observer<List<Memo>> { memos ->
+            // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
+
+            // データ初期化
+            mDataList = arrayListOf()
+            idMutableList = mutableListOf()
+            booleanMutableList = mutableListOf()
+            contentMutableList = mutableListOf()
+            colorMutableList = mutableListOf()
+            textColorMutableList = mutableListOf()
+
+            if (memos != null) {
+                for (u in 0 until memos.size) {
+                    idMutableList.add(memos[u].memoId)
+                    booleanMutableList.add(memos[u].check!!)
+                    contentMutableList.add(memos[u].content!!)
+                    colorMutableList.add(memos[u].color)
+                    textColorMutableList.add(memos[u].textColor)
+                }
+
+                for (i in 0 until memos.size) {
+                    mDataList.add(
+                        MemoDataClass(
+                            idMutableList[i],
+                            booleanMutableList[i],
+                            contentMutableList[i],
+                            colorMutableList[i],
+                            textColorMutableList[i]
+                        )
+                    )
+                }
+
+                mDataList.reverse()
+
+                // Adapter作成
+                adapter = MemoAdapter(mDataList)
+                adapter.isDataBase(dataBase)
+                adapter.isActivity(activity!!)
+
+                // RecyclerViewにAdapterとLayoutManagerの設定
+                viewLayout.tab2_recyclerView.adapter = adapter
+                viewLayout.tab2_recyclerView.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+            }
+        })
+    }
 }

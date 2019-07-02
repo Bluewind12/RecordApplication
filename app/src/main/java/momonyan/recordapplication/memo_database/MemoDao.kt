@@ -31,7 +31,7 @@ interface MemoDao {
     @Query("DELETE FROM memo WHERE memoId = :id")
     fun deleteId(id: Int)
 
-    @Query("DELETE FROM memo WHERE check = :check")
+    @Query("DELETE FROM memo WHERE `check` = :check")
     fun deleteCheck(check: Boolean)
 
 

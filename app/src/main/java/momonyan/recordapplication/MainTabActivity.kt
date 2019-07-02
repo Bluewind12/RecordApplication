@@ -3,16 +3,21 @@ package momonyan.recordapplication
 import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import io.reactivex.Completable
+import io.reactivex.schedulers.Schedulers
 import jp.co.runners.rateorfeedback.RateOrFeedback
 import kotlinx.android.synthetic.main.tab_main_layout.*
+import momonyan.recordapplication.memo_database.AppMemoDataBase
 import net.nend.android.NendAdInterstitial
 import net.nend.android.NendAdInterstitialVideo
 import java.util.*
@@ -151,8 +156,25 @@ class MainTabActivity : AppCompatActivity() {
                 startActivity(Intent(this, MemoInputActivity::class.java))
             }
             R.id.mainMenu3 ->{
-                //TODOここで全消しダイアログ
+                AlertDialog.Builder(this)
+                    .setTitle("チェックがついているものを全削除します")
+                    .setPositiveButton("削除") { dialog, which ->
+                        val dataBase =
+                            Room.databaseBuilder(applicationContext, AppMemoDataBase::class.java, "MemoDataBase.db")
+                                .build()
 
+
+                        Completable.fromAction {
+                            dataBase.memoDao().deleteCheck(true)
+                        }
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(
+                                { mSectionsPagerAdapter.reloadMemo() }
+                                , {}
+                            )
+                    }
+                    .setNegativeButton("キャンセル", null)
+                    .show()
             }
             else -> error("対象外エラー１")
         }
