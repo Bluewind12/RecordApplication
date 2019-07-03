@@ -2,9 +2,7 @@ package momonyan.recordapplication
 
 import android.arch.persistence.room.Room
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -43,15 +41,20 @@ class MemoInputActivity : AppCompatActivity() {
             memo.content = memoInput.text.toString()
             memo.color = color
             memo.textColor = darkLight
-            Completable.fromAction { dataBase.memoDao().insert(memo) }
+            Completable.fromAction {
+                dataBase.memoDao().insert(memo)
+                val adapterData = application as AdapterData
+                adapterData.getAdapter().reloadMemo()
+            }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
-
-            val intent = Intent(this, MainTabActivity::class.java)
-            intent.putExtra("Position", 1)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finish()
-            startActivity(intent)
+
+//            val intent = Intent(this, MainTabActivity::class.java)
+//            intent.putExtra("Position", 1)
+//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//            finish()
+//            startActivity(intent)
         }
         changeMemoBackButton.setOnClickListener {
 

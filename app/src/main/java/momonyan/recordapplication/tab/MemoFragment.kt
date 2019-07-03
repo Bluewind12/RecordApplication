@@ -92,7 +92,6 @@ class MemoFragment : Fragment() {
 
 
     fun reloadDataBase(){
-        Log.d("TESMA","MEMOAS")
         dataBase.memoDao().getAll().observe(this, Observer<List<Memo>> { memos ->
             // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
 

@@ -52,7 +52,7 @@ class MainTabActivity : AppCompatActivity() {
             getString(R.string.ad_detail_pop_Key),
             resources.getInteger(R.integer.ad_detail_pop_Id)
         )
-
+        val data = application as AdapterData
         //Tab設定
         mSectionsPagerAdapter = TabAdapter(supportFragmentManager)
         container.adapter = mSectionsPagerAdapter
@@ -101,6 +101,8 @@ class MainTabActivity : AppCompatActivity() {
 
             }
         })
+
+        data.setAdapter(mSectionsPagerAdapter)
         //Tab位置
         tabPosition = intent.getIntExtra("Position", 0)
         tabLayout.getTabAt(tabPosition)?.select()
@@ -150,10 +152,12 @@ class MainTabActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.mainMenu1 -> {
-                startActivity(Intent(this, DazeInputActivity::class.java))
+                val intent = Intent(this, DazeInputActivity::class.java)
+                startActivity(intent)
             }
             R.id.mainMenu2 ->{
-                startActivity(Intent(this, MemoInputActivity::class.java))
+                val intent = Intent(this, MemoInputActivity::class.java)
+                startActivity(intent)
             }
             R.id.mainMenu3 ->{
                 AlertDialog.Builder(this)

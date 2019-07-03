@@ -2,7 +2,6 @@ package momonyan.recordapplication
 
 import android.arch.persistence.room.Room
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -48,15 +47,21 @@ class DazeInputActivity : AppCompatActivity() {
             user.colorDL = darkLight
             user.memo = dazeMemoEditText.text.toString()
             user.tag = dazeTagEditText.text.toString()
-            Completable.fromAction { dataBase.userDao().insert(user) }
+            Completable.fromAction {
+                dataBase.userDao().insert(user)
+                val adapterData = application as AdapterData
+                adapterData.getAdapter().reloadDaze()
+            }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
 
-            val intent = Intent(this, MainTabActivity::class.java)
-            intent.putExtra("Position", 0)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finish()
-            startActivity(intent)
+
+//            val intent = Intent(this, MainTabActivity::class.java)
+//            intent.putExtra("Position", 0)
+//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//            finish()
+//            startActivity(intent)
 
         }
 

@@ -23,6 +23,9 @@ class TabAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         return setFragment
     }
 
+    fun reloadDaze() {
+        outputFragment.reloadDataBase()
+    }
     fun reloadMemo() {
         memoFragment.reloadDataBase()
     }

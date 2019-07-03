@@ -146,4 +146,64 @@ class OutputFragment : Fragment() {
         }
         adapter.notifyDataSetChanged()
     }
+
+    fun reloadDataBase(){
+        dataBase.userDao().getAll().observe(this, Observer<List<User>> { users ->
+
+
+            // データの初期化
+            mDataList = arrayListOf() //まとめ
+
+            userIdsMutableList = mutableListOf() //Id
+            dateMutableList = mutableListOf() //日付
+            titleMutableList = mutableListOf() //題名
+            contentMutableList = mutableListOf() //内容
+            colorMutableList = mutableListOf() //背景
+            colorFragMutableList = mutableListOf() //テキストカラー
+            memoMutableList = mutableListOf() //テキストカラー
+            tagMutableList = mutableListOf() //テキストカラー
+
+            // ユーザー一覧を取得した時やデータが変更された時に呼ばれる
+            if (users != null) {
+                for (u in 0 until users.size) {
+                    userIdsMutableList.add(users[u].userId)
+                    dateMutableList.add(users[u].day!!)
+                    titleMutableList.add(users[u].title!!)
+                    contentMutableList.add(users[u].content!!)
+                    colorMutableList.add(users[u].color)
+                    colorFragMutableList.add(users[u].colorDL)
+                    memoMutableList.add(users[u].memo)
+                    if (users[u].tag != null) {
+                        tagMutableList.add(users[u].tag!!)
+                    } else {
+                        tagMutableList.add("")
+                    }
+                }
+                for (i in 0 until users.size) {
+                    mDataList.add(
+                        OutputDataClass(
+                            userIdsMutableList[i],
+                            dateMutableList[i],
+                            titleMutableList[i],
+                            contentMutableList[i],
+                            colorMutableList[i],
+                            colorFragMutableList[i],
+                            memoMutableList[i],
+                            tagMutableList[i]
+                        )
+                    )
+                }
+                mDataList.reverse()
+                // Adapter作成
+                adapter = OutputAdapter(mDataList)
+                adapter.isDataBase(dataBase)
+                adapter.isActivity(activity!!)
+
+                // RecyclerViewにAdapterとLayoutManagerの設定
+                viewLayout.tab1_recyclerView.adapter = adapter
+                viewLayout.tab1_recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+            }
+        })
+    }
 }
